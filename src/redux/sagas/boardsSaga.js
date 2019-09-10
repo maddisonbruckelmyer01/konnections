@@ -13,9 +13,22 @@ function* fetchBoards() {
     }
 }
 
+function* addBoard(action) {
+    try{
+        yield axios.post('/api/boards/addNew', action.payload)
+        console.log(action.payload)
+        yield put({
+            type: 'FETCH_BOARDS'
+        })
+    }
+    catch(error) {
+        console.log('Adding board post error', error)
+    }
+}
 
 function* boardsSaga() {
     yield takeLatest('FETCH_BOARDS', fetchBoards);
+    yield takeLatest('ADD_BOARD', addBoard);
 }
 
 export default boardsSaga;

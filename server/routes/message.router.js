@@ -10,7 +10,7 @@ router.post('/sendMessage', (req,res) => {
    
     let queryText = `INSERT INTO "messages" ("message", "user_id", "board_id")
         VALUES($1, $2, $3);`;
-        
+
     pool.query(queryText, [newMessage, user_id, board_id])
         .then((result) => {
             res.sendStatus(201);
@@ -24,7 +24,14 @@ router.post('/sendMessage', (req,res) => {
 //get messages for each board
 router.get('/allMessages', (req,res) => {
     let queryText = `SELECT * FROM "messages";`;
-    pool.
+    pool.query(queryText)
+        .then((result) => {
+            res.send(result.rows)
+        })
+        .catch((error) => {
+            console.log('error on getting messages', error)
+            red.sendStatus(500)
+        })
 })
 
 module.exports = router;

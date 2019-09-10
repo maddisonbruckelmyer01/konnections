@@ -1,12 +1,13 @@
 import axios from 'axios'; 
 import { put, takeLatest } from 'redux-saga/effects';
 
+//send messages
 function* sendMessage(action) {
     try {
         yield axios.post('/api/boards/sendMessage', action.payload)
         console.log(action.payload)
         // yield put({
-        //     type: 'SET_BOARDS'
+        //     type: 'GET_MESSAGE'
         // })
     }
     catch(error) {
@@ -14,8 +15,24 @@ function* sendMessage(action) {
     }
 }
 
+//get messages
+function* fetchMessages() {
+    try{
+    let response = yield axios.get('/api/boards/allMessages')
+        console.log(response.data);
+        yield put({
+            type: 'GET_MESSAGE',
+            payload: response.data
+        })
+    }
+    catch(error) {
+        console.log('error on gettting messages ', error); 
+    }
+}
+
 function* messagesSaga() {
     yield takeLatest('SEND_MESSAGE', sendMessage);
+    yield takeLatest('FETCH_MESSAGES', fetchMessages)
 }
 
 export default messagesSaga;

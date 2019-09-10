@@ -20,6 +20,8 @@ import Counselors from '../Counselors/Counselors';
 import Boards from '../Boards/Boards';
 
 import './App.css';
+import CreateNewBoard from '../CreateNewBoard/CreateNewBoard';
+import DirectMessage from '../DirectMessage/DirectMessage';
 
 class App extends Component {
   componentDidMount () {
@@ -53,6 +55,12 @@ class App extends Component {
 
             <ProtectedRoute
               exact
+              path='/directMessage'
+              component={DirectMessage}
+            />
+
+            <ProtectedRoute
+              exact
               path='/boards'
               component={Boards}
             />
@@ -61,6 +69,12 @@ class App extends Component {
               exact
               path="/home"
               component={UserPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/createNewBoard"
+              component={CreateNewBoard}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
