@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import NewMessage from '../NewMessage/NewMessage';
 
 class Boards extends Component {
 
@@ -21,30 +20,38 @@ class Boards extends Component {
 
     //
     handleChange = (event) => {
-        event.preventDefault();
         this.setState({
-            newMessage: event.target.value
+            newMessage: event.target.value,
         })
     }//end handleChange
 
-    handleSend = (event) => {
-        event.preventDefault();
+    handleSend = (id) => {
         console.log('in send');
+        this.props.dispatch({
+            type: 'SEND_MESSAGE',
+            payload: {
+                message: this.state.newMessage,
+                board_id: id
+            }
+        })
     }
 
     render() {
         return (
             <div>
-            <pre>{JSON.stringify(this.state.newMessage)}</pre>
+            {/* <pre>{JSON.stringify(this.state.newMessage)}</pre> */}
                {
                    this.props.boards.map((board) => {
-                       return <><h3>{board.board_name}</h3><p>{board.description}</p></>
+                       return (
+                       <>
+                            <h3 key={board.id}>{board.board_name}</h3>
+                            <p>{board.description}</p>
+                            <input placeholder="New Message" type="text" onChange={this.handleChange} />
+                            <button onClick={() => this.handleSend(board.id)}>Send</button>
+                       </>
+                   )
                    })
                }
-               <form onClick={this.handleSend}>
-               <input placeholder="New Message" type="text" onChange={this.handleChange}/>
-               <input type="button" value="Send" />
-            </form>
             </div>
         )
     }

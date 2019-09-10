@@ -13,6 +13,7 @@ function* fetchBoards() {
     }
 }
 
+
 function* boardsSaga() {
     yield takeLatest('FETCH_BOARDS', fetchBoards);
 }
