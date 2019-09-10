@@ -17,11 +17,12 @@ router.get('/', (req,res) => {
 })
 
 //get messages for each board
-router.get('/:id', (req,res) => {
+router.get('/messages/:id', (req,res) => {
     let queryText = `SELECT * FROM "messages" WHERE "board_id" = $1;`;
     pool.query(queryText)
         .then((result) => {
             console.log('messages for baord:', result.rows)
+            res.send(result.rows)
         })
         .catch((error) => {
             console.log('server messages for boards get error', error)
