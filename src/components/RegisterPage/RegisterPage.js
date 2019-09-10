@@ -5,6 +5,11 @@ class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
+    first_name: '',
+    last_name: '',
+    birthday: '',
+    gender: '',
+    admin: false
   };
 
   registerUser = (event) => {
@@ -16,6 +21,11 @@ class RegisterPage extends Component {
         payload: {
           username: this.state.username,
           password: this.state.password,
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+          birthday: this.state.birthday,
+          gender: this.state.gender,
+          admin: this.state.admin
         },
       });
     } else {
@@ -62,6 +72,46 @@ class RegisterPage extends Component {
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="first_name">
+            First Name: 
+            <input 
+              name="first_name"
+              value={this.state.first_name}
+              onChange={this.handleInputChangeFor('first_name')}
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="last_name">
+              Last Name:
+              <input 
+                name="last_name"
+                value={this.state.last_name}
+                onChange={this.handleInputChangeFor('last_name')}
+                />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="birthday">
+              Birthday:
+              <input 
+                name="birthday"
+                value={this.state.birthday}
+                onChange={this.handleInputChangeFor('birthday')}
+                />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="gender">
+              Gender:
+              <input 
+                name="gender"
+                value={this.state.gender}
+                onChange={this.handleInputChangeFor('gender')}
+                />
             </label>
           </div>
           <div>

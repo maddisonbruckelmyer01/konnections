@@ -63,3 +63,12 @@ VALUES ('National Suicide Prevention Lifeline', 'https://suicidepreventionlifeli
     volunteers who will understand what you are going through.'), 
     ('Kooth', 'https://www.kooth.com', 'No Phone Number', 'A free, safe and anonymous online support for 
     young people. They are not a 24/7 service but on their website they say if they are online or offline');
+
+    INSERT INTO "username" ("name") 
+    VALUES ('Afghan Hound'), ('African Tree Toad'), ('African Penguin'), ('African Wild Dog'), 
+    ('Akita'), ('Barn Owl'), ('Bat'), ('Basset Hound'), ('Baboon'), ('Badger'), ('Beagle'), ('Bear'), 
+    ('Bearded Collie'), ('Bearded Dragon'), ('Beaver'), ('Beetle'), ('Bengal Tiger'), ('Bird'), ('Bison'), 
+    ('Black Bear'), ('Black Widow Spider'), ('American Bulldog'), ('Alligator'), ('American Pit Bull Terrier'), 
+    ('Angelfish'), ('Ant'), ('Artic Fox'), ('Arctic Wolf'), ('Artic Hare'), ('Blue Whale'), ('BloodHound'), 
+    ('Armadillo'), ('Bobcat'), ('Asian Elephant'), ('Border Collie'), ('Boxer Dog'), ('Brown Bear'), 
+    ('Boston Terrier'), ('Border Terrier');
