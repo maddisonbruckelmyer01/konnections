@@ -3,10 +3,6 @@ import {connect} from 'react-redux';
 
 class Boards extends Component {
 
-    // state = {
-    //     newMessage: ''
-    // }
-
     componentDidMount() {
         this.getBoards()
     
@@ -18,7 +14,7 @@ class Boards extends Component {
             type: 'FETCH_SPECIFIC_BOARD',
             payload: id
         })
-    }
+    }//end getSpecificBoard
 
     //get messages from database
     getMessages = (id) => {
@@ -27,6 +23,7 @@ class Boards extends Component {
             payload: id
         })
     }//end get messages
+
     //get boards from database
     getBoards = () => {
         this.props.dispatch({
@@ -40,18 +37,6 @@ class Boards extends Component {
             newMessage: event.target.value
         })
     }//end handleChange
-
-    //send new message to the database
-    // handleSend = (id) => {
-    //     console.log('in send');
-    //     this.props.dispatch({
-    //         type: 'SEND_MESSAGE',
-    //         payload: {
-    //             message: this.state.newMessage,
-    //             board_id: id
-    //         }
-    //     })
-    //end handle send
 
     //create a new board click
     handleNewBoardClick = () => {
@@ -68,8 +53,6 @@ class Boards extends Component {
     //click on board name and see specific board with those messages
     boardClicker = (id) => {
         console.log('board clicked')
-        this.getSpecificBoard(id)
-        this.getMessages(id)
         this.props.history.push(`/board/${id}`)
     }//end boardClicker
 
@@ -77,21 +60,6 @@ class Boards extends Component {
         
         return (
             <div>
-            {/* <pre>{JSON.stringify(this.state.newMessage)}</pre> */}
-               {/* {
-                   this.props.boards.map((board) => {
-                       return (
-                       <>
-                            <h3 key={board.id}>{board.board_name}</h3>
-                            <p>{board.description}</p>
-                            <input placeholder="New Message" type="text" onChange={this.handleChange} />
-                            <button onClick={() => this.handleSend(board.id)}>Send</button>
-                       </>
-                   )
-                   })
-               } */}
-               {/* {boardsToDom} */}
-
                {
                    this.props.boards.map(board => {
                      return  ( <><h1 key={board.id} onClick={() => {this.boardClicker(board.id)}}>
@@ -100,13 +68,7 @@ class Boards extends Component {
                      <h3>{board.description}</h3> </>)
                    })
                }
-                
-                {/* {
-                    this.props.messages.map((message) => {
-                        return (<p>{message.message} {message.board_id} {message.user_id}</p>)
-                    })
-                } */}
-                <button onClick={this.handleNewDirectClick}>New Direct Message</button>
+                <button onClick={this.handleNewDirectClick}>Direct Messages</button>
                 <button onClick={this.handleNewBoardClick}>Create a new board</button>
             </div>
         )

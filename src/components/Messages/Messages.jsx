@@ -8,7 +8,8 @@ class Messages extends Component {
     }
 
     componentDidMount = () => {
-        // this.getMessages()
+       this.getMessages()
+       this.getSpecificBoard()
     }//end componentDidMount
 
     //set local state for new message
@@ -30,18 +31,36 @@ class Messages extends Component {
         })
     }//end handleSend
 
+    //get messages from database
+    getMessages = (id) => {
+        this.props.dispatch({
+            type: 'FETCH_MESSAGES',
+            payload: this.props.match.params.id
+        })
+    }//end get messages
+
+    //get specific board from the database
+    getSpecificBoard = (id) => {
+        console.log(id)
+        this.props.dispatch({
+            type: 'FETCH_SPECIFIC_BOARD',
+            payload: this.props.match.params.id
+        })
+    }//end getSpecificBoard
+
+
     render() {
+
+        let messagesToDom = this.props.messages.map((message) => {
+            return <p>{message.message}</p>
+        })
         return (
             <div>
-                <h1>{this.props.board.board_name}</h1>
-                <p>{this.props.board.description}</p>
-                {
-                    this.props.messages.map((message) => {
-                        return <p>{message.message}</p>
-                    })
-                }
+                <h1>{this.props.specificBoard.board_name}</h1>
+                <p>{this.props.specificBoard.description}</p>
+                {messagesToDom}
                 <input placeholder="New Message" type="text" onChange={this.handleChange} />
-                <button onClick={() => this.handleSend(this.props.board.id)}>Send</button>
+                <button onClick={() => this.handleSend(this.props.specificBoard.id)}>Send</button>
             </div>
         )
     }
@@ -49,7 +68,7 @@ class Messages extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        board: state.specificBoardReducer,
+        specificBoard: state.specificBoardReducer,
         messages: state.messagesReducer
     }
 }

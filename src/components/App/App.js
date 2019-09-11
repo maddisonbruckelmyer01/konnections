@@ -23,6 +23,7 @@ import './App.css';
 import CreateNewBoard from '../CreateNewBoard/CreateNewBoard';
 import DirectMessage from '../DirectMessage/DirectMessage';
 import Messages from '../Messages/Messages';
+import CreateDirectMessage from '../CreateDirectMessage/CreateDirectMessage';
 
 class App extends Component {
   componentDidMount () {
@@ -89,6 +90,12 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/createNewDirectMessage"
+              component={CreateDirectMessage}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

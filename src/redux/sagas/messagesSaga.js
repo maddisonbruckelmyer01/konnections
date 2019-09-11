@@ -6,9 +6,10 @@ function* sendMessage(action) {
     try {
         yield axios.post('/api/boards/messages/sendMessage', action.payload)
         console.log(action.payload)
-        // yield put({
-        //     type: 'GET_MESSAGE'
-        // })
+        yield put({
+            type: 'FETCH_MESSAGES',
+            payload: action.payload.board_id
+        })
     }
     catch(error) {
         console.log('error on sending message ', error);
@@ -18,7 +19,7 @@ function* sendMessage(action) {
 //get messages
 function* fetchMessages(action) {
     try{
-    let response = yield axios.get(`/api/boards/messages/${action.payload}`)
+    let response = yield axios.get(`/api/boards/messages/${action.payload}`,)
         console.log(response.data);
         yield put({
             type: 'GET_MESSAGE',

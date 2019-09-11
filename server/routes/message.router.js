@@ -33,7 +33,7 @@ router.get('/:id', (req,res) => {
         })
         .catch((error) => {
             console.log('error on getting messages', error)
-            red.sendStatus(500)
+            res.sendStatus(500)
         })
 })
 
