@@ -13,6 +13,20 @@ function* fetchBoards() {
     }
 }
 
+function *fetchSpecificBoard(action) {
+    try{
+        let response = yield axios.get(`/api/boards/${action.payload}`)
+        console.log('saga response is', response.data)
+        yield put ({
+            type: 'SET_SPECIFIC_BOARD',
+            payload: response.data
+        })
+    }
+    catch(error) {
+        console.log('error getting specific board', error);
+    }
+}
+
 function* addBoard(action) {
     try{
         yield axios.post('/api/boards/addNew', action.payload)
@@ -29,6 +43,7 @@ function* addBoard(action) {
 function* boardsSaga() {
     yield takeLatest('FETCH_BOARDS', fetchBoards);
     yield takeLatest('ADD_BOARD', addBoard);
+    yield takeLatest('FETCH_SPECIFIC_BOARD', fetchSpecificBoard);
 }
 
 export default boardsSaga;

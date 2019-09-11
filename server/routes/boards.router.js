@@ -16,6 +16,22 @@ router.get('/', (req,res) => {
         })
 })
 
+//get specific board
+router.get('/:id', (req, res) => {
+    let specificboard = req.params.id 
+    console.log('this board id is', specificboard)
+    let queryText = `SELECT * FROM "board" WHERE "id" = $1;`;
+    pool.query(queryText, [specificboard])
+        .then((result) => {
+            console.log(result.rows);
+            res.send(result.rows[0])
+        })
+        .catch((error) => {
+            console.log(error)
+            res.sendStatus(500)
+        })
+})
+
 //add new board
 router.post('/addNew', (req,res) => {
     let queryText = `INSERT INTO "board" ("board_name", "description") 

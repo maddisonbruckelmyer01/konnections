@@ -9,13 +9,22 @@ class Boards extends Component {
 
     componentDidMount() {
         this.getBoards()
-        this.getMessages()
+    
     }//end componentDidMount
 
-    //get messages from database
-    getMessages = () => {
+    getSpecificBoard = (id) => {
+        console.log(id)
         this.props.dispatch({
-            type: 'FETCH_MESSAGES'
+            type: 'FETCH_SPECIFIC_BOARD',
+            payload: id
+        })
+    }
+
+    //get messages from database
+    getMessages = (id) => {
+        this.props.dispatch({
+            type: 'FETCH_MESSAGES',
+            payload: id
         })
     }//end get messages
     //get boards from database
@@ -54,24 +63,32 @@ class Boards extends Component {
     handleNewDirectClick = () => {
         console.log('new direct message clicked')
         this.props.history.push('/directMessage')
-    }
+    }//end handleNewDirectClick
+
+    //click on board name and see specific board with those messages
+    boardClicker = (id) => {
+        console.log('board clicked')
+        this.getSpecificBoard(id)
+        // this.getMessages(id)
+        this.props.history.push(`/board/${id}`)
+    }//end boardClicker
 
     render() {
-        let boardsToDom = this.props.boards.map((board) => {
-            let messagesToDom = this.props.messages.map((message) => {
-                return <p>{message.message} {message.board_id}</p>
-            })
-            return (
-                <> 
-                    <h3 key={board.id}>{board.board_name}</h3>
-                    <p>{board.description}</p>
-                    {messagesToDom}
-                    <input placeholder="New Message" type="text" onChange={this.handleChange} />
-                    <button onClick={() => this.handleSend(board.id)}>Send</button>
-                </>
-            )
-        })
 
+        // let boardsToDom = this.props.boards.map((board) => {
+        //     let messagesToDom = this.props.messages.map((message) => {
+        //         return <p>{message.message} {message.board_id}</p>
+        //     })
+        //     return (
+        //         <> 
+        //             <h3 key={board.id}>{board.board_name}</h3>
+        //             <p>{board.description}</p>
+        //             {messagesToDom}
+        //             <input placeholder="New Message" type="text" onChange={this.handleChange} />
+        //             <button onClick={() => this.handleSend(board.id)}>Send</button>
+        //         </>
+        //     )
+        // })
         
         return (
             <div>
@@ -88,7 +105,16 @@ class Boards extends Component {
                    )
                    })
                } */}
-               {boardsToDom}
+               {/* {boardsToDom} */}
+
+               {
+                   this.props.boards.map(board => {
+                     return  ( <><h1 key={board.id} onClick={() => {this.boardClicker(board.id)}}>
+                         {board.board_name}
+                    </h1>
+                     <h3>{board.description}</h3> </>)
+                   })
+               }
                 
                 {/* {
                     this.props.messages.map((message) => {
