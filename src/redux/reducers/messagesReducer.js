@@ -1,4 +1,4 @@
-const messagesReducer = (state=[], action) => {
+const messagesReducer = (state = [], action) => {
     switch (action.type) {
         case 'SEND_MESSAGE' :
             return action.payload

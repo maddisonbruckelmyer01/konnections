@@ -1,29 +1,57 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 class Messages extends Component {
 
+    state = {
+        newMessage: ''
+    }
+
     componentDidMount = () => {
-        this.getBoards()
-        this.getMessages()
+        // this.getMessages()
     }//end componentDidMount
 
-    //get specific board that has been clicked on
-    getBoards = (id) => {
-        let action = {
-            type: 'FETCH_BOARDS',
-            payload: this.props.match.params.id
-        }
-        this.props.dispatch(action)
+    //set local state for new message
+    handleChange = (event) => {
+        this.setState({
+            newMessage: event.target.value
+        })
+    }//end handleChange
 
-    }//end getBoards
+    //sends a new message to the database
+    handleSend = (id) => {
+        console.log('in send');
+        this.props.dispatch({
+            type: 'SEND_MESSAGE',
+            payload: {
+                message: this.state.newMessage,
+                board_id: id
+            }
+        })
+    }//end handleSend
 
     render() {
         return (
             <div>
-                {this.props.}
+                <h1>{this.props.board.board_name}</h1>
+                <p>{this.props.board.description}</p>
+                {
+                    this.props.messages.map((message) => {
+                        return <p>{message.message}</p>
+                    })
+                }
+                <input placeholder="New Message" type="text" onChange={this.handleChange} />
+                <button onClick={() => this.handleSend(this.props.board.id)}>Send</button>
             </div>
         )
     }
 }
 
-export default Messages;
+const mapStateToProps = (state) => {
+    return {
+        board: state.specificBoardReducer,
+        messages: state.messagesReducer
+    }
+}
+
+export default connect(mapStateToProps)(Messages);

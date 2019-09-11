@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 //send messages
 function* sendMessage(action) {
     try {
-        yield axios.post('/api/boards/sendMessage', action.payload)
+        yield axios.post('/api/boards/messages/sendMessage', action.payload)
         console.log(action.payload)
         // yield put({
         //     type: 'GET_MESSAGE'
@@ -16,9 +16,9 @@ function* sendMessage(action) {
 }
 
 //get messages
-function* fetchMessages() {
+function* fetchMessages(action) {
     try{
-    let response = yield axios.get('/api/boards/allMessages')
+    let response = yield axios.get(`/api/boards/messages/${action.payload}`)
         console.log(response.data);
         yield put({
             type: 'GET_MESSAGE',

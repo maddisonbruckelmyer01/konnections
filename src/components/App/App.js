@@ -22,6 +22,7 @@ import Boards from '../Boards/Boards';
 import './App.css';
 import CreateNewBoard from '../CreateNewBoard/CreateNewBoard';
 import DirectMessage from '../DirectMessage/DirectMessage';
+import Messages from '../Messages/Messages';
 
 class App extends Component {
   componentDidMount () {
@@ -69,6 +70,12 @@ class App extends Component {
               exact
               path="/home"
               component={UserPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/board/:id"
+              component={Messages}
             />
 
             <ProtectedRoute

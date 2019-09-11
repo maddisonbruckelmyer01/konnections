@@ -22,10 +22,13 @@ router.post('/sendMessage', (req,res) => {
 
 })
 //get messages for each board
-router.get('/allMessages', (req,res) => {
-    let queryText = `SELECT * FROM "messages";`;
-    pool.query(queryText)
+router.get('/:id', (req,res) => {
+    let board_id = req.params.id;
+    console.log('board id is', board_id)
+    let queryText = `SELECT * FROM "messages" WHERE "board_id" = $1;`;
+    pool.query(queryText, [board_id])
         .then((result) => {
+            console.log('the messages are',result.rows)
             res.send(result.rows)
         })
         .catch((error) => {

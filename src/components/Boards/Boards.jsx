@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 
 class Boards extends Component {
 
-    state = {
-        newMessage: ''
-    }
+    // state = {
+    //     newMessage: ''
+    // }
 
     componentDidMount() {
         this.getBoards()
@@ -42,16 +42,16 @@ class Boards extends Component {
     }//end handleChange
 
     //send new message to the database
-    handleSend = (id) => {
-        console.log('in send');
-        this.props.dispatch({
-            type: 'SEND_MESSAGE',
-            payload: {
-                message: this.state.newMessage,
-                board_id: id
-            }
-        })
-    }//end handle send
+    // handleSend = (id) => {
+    //     console.log('in send');
+    //     this.props.dispatch({
+    //         type: 'SEND_MESSAGE',
+    //         payload: {
+    //             message: this.state.newMessage,
+    //             board_id: id
+    //         }
+    //     })
+    //end handle send
 
     //create a new board click
     handleNewBoardClick = () => {
@@ -69,26 +69,11 @@ class Boards extends Component {
     boardClicker = (id) => {
         console.log('board clicked')
         this.getSpecificBoard(id)
-        // this.getMessages(id)
+        this.getMessages(id)
         this.props.history.push(`/board/${id}`)
     }//end boardClicker
 
     render() {
-
-        // let boardsToDom = this.props.boards.map((board) => {
-        //     let messagesToDom = this.props.messages.map((message) => {
-        //         return <p>{message.message} {message.board_id}</p>
-        //     })
-        //     return (
-        //         <> 
-        //             <h3 key={board.id}>{board.board_name}</h3>
-        //             <p>{board.description}</p>
-        //             {messagesToDom}
-        //             <input placeholder="New Message" type="text" onChange={this.handleChange} />
-        //             <button onClick={() => this.handleSend(board.id)}>Send</button>
-        //         </>
-        //     )
-        // })
         
         return (
             <div>
@@ -127,6 +112,7 @@ class Boards extends Component {
         )
     }
 }
+
 
 const mapStateToProps = (state) => {
     return {
