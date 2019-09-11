@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import Chance from 'chance';
+
+let chance = new Chance();
 
 class RegisterPage extends Component {
   state = {
@@ -9,6 +12,7 @@ class RegisterPage extends Component {
     last_name: '',
     birthday: '',
     gender: '',
+    generated_username: chance.word({length: 5}),
     admin: false
   };
 
@@ -25,6 +29,7 @@ class RegisterPage extends Component {
           last_name: this.state.last_name,
           birthday: this.state.birthday,
           gender: this.state.gender,
+          generated_username: this.state.generated_username,
           admin: this.state.admin
         },
       });

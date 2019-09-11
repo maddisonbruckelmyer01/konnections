@@ -22,9 +22,10 @@ router.post('/register', (req, res, next) => {
   const last_name = req.body.last_name;
   const birthday = req.body.birthday;
   const gender = req.body.gender;
+  const generated_username = req.body.generated_username;
 
-  const queryText = 'INSERT INTO "user" (username, password, first_name, last_name, birthday, gender) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id';
-  pool.query(queryText, [username, password, first_name, last_name, birthday, gender])
+  const queryText = 'INSERT INTO "user" (username, password, first_name, last_name, birthday, gender, generated_username) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id';
+  pool.query(queryText, [username, password, first_name, last_name, birthday, gender, generated_username])
     .then(() => res.sendStatus(201))
     .catch((error) => {
       console.log(error)
