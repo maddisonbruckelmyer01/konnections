@@ -52,7 +52,7 @@ class Messages extends Component {
     render() {
 
         let messagesToDom = this.props.messages.map((message) => {
-            return <p>{message.message}</p>
+            return <p>{message.generated_username}: {message.message}</p>
         })
         return (
             <div>

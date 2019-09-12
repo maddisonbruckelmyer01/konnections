@@ -12,6 +12,3 @@ const alertReducer = (state=[], action) => {
 }
 
 export default alertReducer;
-
-
-// ALERT FOR MESSAGE SENT NOT WORKING!!!!!!!!!!!!
