@@ -17,11 +17,17 @@ function* fetchDirectMessages(action) {
 
 function* sendDirectMessages(action) {
     try {
-        axios.post('/api/directMessage/sendDirectMessage', action.payload);
+        yield axios.post('/api/directMessage/sendDirectMessage', action.payload);
         console.log(action.payload)
+        yield put ({
+            type: 'MESSAGE_SENT'
+        })
     }
     catch (error) {
         console.log('direct messages post request error', error)
+        yield put ({
+            type: 'MESSAGE_NOT_SENT'
+        })
     }
 }
 

@@ -26,7 +26,6 @@ router.post('/sendDirectMessage', (req,res) => {
     pool.query(queryText, [sender_id, receiver_username, message])
         .then((result) => {
             res.sendStatus(201)
-            alert('Your message has been sent!')
         })
         .catch((error) => {
             console.log('error on sending direct message', error)

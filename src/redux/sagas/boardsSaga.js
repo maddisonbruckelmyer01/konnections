@@ -34,9 +34,13 @@ function* addBoard(action) {
         yield put({
             type: 'FETCH_BOARDS'
         })
+        yield put ({
+            type: 'MESSAGE_BOARD_ADD'
+        })
     }
     catch(error) {
         console.log('Adding board post error', error)
+        action('Board has not been created!')
     }
 }
 

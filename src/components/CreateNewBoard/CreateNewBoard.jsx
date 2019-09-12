@@ -28,7 +28,6 @@ class CreateNewBoard extends Component {
             type: 'ADD_BOARD',
             payload: this.state
         })
-    alert('Your board has been created!')
     this.props.history.push('/boards') 
     }//end handleClick
 

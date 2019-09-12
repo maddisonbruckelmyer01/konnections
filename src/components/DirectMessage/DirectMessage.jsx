@@ -11,7 +11,7 @@ class DirectMessage extends Component {
 
     //go to create new direct message page
     handleClick = () => {
-        // console.log('clicked')
+        console.log('clicked')
         this.props.history.push('/createNewDirectMessage')
     }//end handleClick
 

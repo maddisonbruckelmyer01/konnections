@@ -41,7 +41,7 @@ router.post('/addNew', (req,res) => {
     pool.query(queryText, [board_name, description])
         .then((result) => {
             res.sendStatus(201)
-            alert('Your board has been created!')
+            alert('Your board has been created!  HELLLLOOOOOOO')
         })
         .catch((error) => {
             console.log('error on adding new board', error)
