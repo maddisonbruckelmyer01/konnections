@@ -3,6 +3,12 @@ import {connect} from 'react-redux';
 
 class DirectMessage extends Component {
 
+    componentDidMount () {
+        this.props.dispatch({
+            type: 'FETCH_DIRECT_MESSAGES'
+        })
+    }//end componentDidMount
+
     //go to create new direct message page
     handleClick = () => {
         // console.log('clicked')
@@ -10,12 +16,31 @@ class DirectMessage extends Component {
     }//end handleClick
 
     render() {
+
+        // let messagesToDom = this.props.directMessage.map((text) => {
+        //     return <p>{text.message}</p>
+        // })
+
         return (
-            <div>
+            <div>   
+
                 <button onClick={this.handleClick}>Create New Direct Message</button>
             </div>
         )
     }
 }
 
-export default connect()(DirectMessage); 
+const mapStateToProps = (state) => {
+    return {
+        messages: state.directMessagesReducer
+    }
+}
+
+export default connect(mapStateToProps)(DirectMessage); 
+
+
+// {
+//     this.props.messages.map((text) => {
+//         return <p>{text}</p>
+//     })
+// }
