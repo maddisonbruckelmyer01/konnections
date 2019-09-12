@@ -16,21 +16,6 @@ function* sendMessage(action) {
     }
 }
 
-//get specific user's name for each message
-function* fetchUser(action) {
-    try{
-        let response = yield axios.get(`/api/boards/messages`)
-        console.log('user is: ', response.data)
-        yield put({
-            type: 'GET_SPECIFIC_USER',
-            payload: response.data
-        })
-    }
-    catch(error) {
-        console.log('error on getting specific user' , error);
-    }
-}
-
 //get messages
 function* fetchMessages(action) {
     try{

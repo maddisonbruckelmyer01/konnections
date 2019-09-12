@@ -6,6 +6,7 @@ import counselorSaga from './counselorSaga';
 import boardsSaga from './boardsSaga';
 import messagesSaga from './messagesSaga';
 import directMessagesSaga from './directMessagesSaga';
+import adminSaga from './adminSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     boardsSaga(),
     messagesSaga(),
     directMessagesSaga(),
+    adminSaga()
   ]);
 }

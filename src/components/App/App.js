@@ -24,6 +24,7 @@ import CreateNewBoard from '../CreateNewBoard/CreateNewBoard';
 import DirectMessage from '../DirectMessage/DirectMessage';
 import Messages from '../Messages/Messages';
 import CreateDirectMessage from '../CreateDirectMessage/CreateDirectMessage';
+import Admin from '../Admin/Admin';
 
 class App extends Component {
   componentDidMount () {
@@ -77,6 +78,12 @@ class App extends Component {
               exact
               path="/board/:id"
               component={Messages}
+            />
+
+            <ProtectedRoute
+              exact
+              path='/admin'
+              component={Admin}
             />
 
             <ProtectedRoute

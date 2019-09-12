@@ -13,6 +13,7 @@ const counselorRouter = require('./routes/counselors.router');
 const boardsRouter = require('./routes/boards.router');
 const messageRouter = require('./routes/message.router');
 const directMessagesRouter = require('./routes/directMessages.router');
+const adminRouter = require('./routes/admin.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/api/counselors', counselorRouter);
 app.use('/api/boards', boardsRouter);
 app.use('/api/boards/messages', messageRouter);
 app.use('/api/directMessage', directMessagesRouter);
+app.use('/api/admin', adminRouter);
 
 // Serve static files
 app.use(express.static('build'));

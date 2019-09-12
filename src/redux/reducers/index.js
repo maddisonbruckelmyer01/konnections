@@ -8,6 +8,7 @@ import messagesReducer from './messagesReducer';
 import specificBoardReducer from './specificBoardReducer';
 import directMessageReducer from './directMessagesReducer';
 import alertReducer from './alertReducer';
+import adminReducer from './adminReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   messagesReducer,
   specificBoardReducer,
   directMessageReducer,
-  alertReducer
+  alertReducer,
+  adminReducer
 });
 
 export default rootReducer;

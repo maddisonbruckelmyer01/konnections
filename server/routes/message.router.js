@@ -37,9 +37,6 @@ router.get('/:id', (req,res) => {
         })
 })
 
-//get specific user for each message
-router.get('/', (req,res) => {
-    let queryText = `SELECT * FROM "messages" WHERE "`
-})
+
 
 module.exports = router;
