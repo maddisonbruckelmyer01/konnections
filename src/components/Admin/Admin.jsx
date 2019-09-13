@@ -19,12 +19,6 @@ const styles = theme => ({
     },
 });
 
-function createData(username, firstName, LastName, GeneratedUsername, Birthday, Gender) {
-    return { username, firstName, LastName, GeneratedUsername, Birthday, Gender };
-}
-
-
-
 class Admin extends Component {
     //getting users on page load
     componentDidMount() {
@@ -32,7 +26,16 @@ class Admin extends Component {
             type: 'FETCH_USERS'
         })
     }//end componentDidMount
+
+    //goes to addnewcounselor page
+    handleClick = () => {
+        this.props.history.push('/admin/addNewCounselor')
+    }//end handleClick
     
+    //goes to deleteCounselor page
+    handleDeleteClick = () => {
+        this.props.history.push('/admin/deleteCounselor')
+    }//end handleDeleteClick
 
     render() {
         const { classes } = this.props;
@@ -64,7 +67,8 @@ class Admin extends Component {
                         </TableBody>
                     </Table>
                 </Paper>
-
+                <button onClick={this.handleClick}>Add New Counselor</button>
+                <button onClick={this.handleDeleteClick}>Delete Counselor</button>
             </div>
         )
     }

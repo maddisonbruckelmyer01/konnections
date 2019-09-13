@@ -25,6 +25,8 @@ import DirectMessage from '../DirectMessage/DirectMessage';
 import Messages from '../Messages/Messages';
 import CreateDirectMessage from '../CreateDirectMessage/CreateDirectMessage';
 import Admin from '../Admin/Admin';
+import AddNewCounselor from '../AddNewCounselor/AddNewCounselor';
+import DeleteCounselor from '../DeleteCounselor/DeleteCounselor';
 
 class App extends Component {
   componentDidMount () {
@@ -68,6 +70,12 @@ class App extends Component {
               component={Boards}
             />
 
+            <ProtectedRoute 
+              exact
+              path="/admin/addNewCounselor"
+              component={AddNewCounselor}
+            />
+
             <ProtectedRoute
               exact
               path="/home"
@@ -84,6 +92,12 @@ class App extends Component {
               exact
               path='/admin'
               component={Admin}
+            />
+
+            <ProtectedRoute 
+              exact 
+              path='/admin/deleteCounselor'
+              component={DeleteCounselor}
             />
 
             <ProtectedRoute

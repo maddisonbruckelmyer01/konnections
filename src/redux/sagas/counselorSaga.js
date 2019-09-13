@@ -14,8 +14,32 @@ function* fetchCounselors() {
     }
 }
 
+function*  addNewCounselor() {
+    try{
+        yield axios.post('/api/counselors/addNew')
+
+    }
+    catch(error) {
+        console.log('Adding counselor error', error);
+    }
+}
+
+function* deleteCounselor(action) {
+    try{
+        yield axios.delete(`/api/counselors/deleteCounselor/${action.payload}`, action.payload)
+        yield put({
+            type: 'FETCH_COUNSELORS'
+        })
+    }
+    catch(error) {
+        console.log('Deleting counselor error', error)
+    }
+}
+
 function* counselorSaga() {
-    yield takeLatest('FETCH_COUSELORS', fetchCounselors)
+    yield takeLatest('FETCH_COUNSELORS', fetchCounselors)
+    yield takeLatest('ADD_NEW_COUNSELOR', addNewCounselor)
+    yield takeLatest('DELETE_COUNSELOR', deleteCounselor)
 }
 
 export default counselorSaga;

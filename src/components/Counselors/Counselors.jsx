@@ -10,7 +10,7 @@ class Counselors extends Component {
 
     getCounselors = () => {
         this.props.dispatch({
-            type: 'FETCH_COUSELORS'
+            type: 'FETCH_COUNSELORS'
         })
     }//end getCounselors
 
