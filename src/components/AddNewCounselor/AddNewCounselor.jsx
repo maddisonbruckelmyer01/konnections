@@ -28,6 +28,7 @@ class AddNewCounselor extends Component {
             type: 'ADD_NEW_COUNSELOR',
             payload: this.state
         })
+        this.props.history.push('/admin')
     }//end handleClick
 
     render() {

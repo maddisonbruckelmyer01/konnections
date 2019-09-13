@@ -36,6 +36,7 @@ class DeleteCounselor extends Component {
             type: 'DELETE_COUNSELOR',
             payload: id
         })
+        this.props.history.push('/admin')
     }//end handleDelete
 
     render() {

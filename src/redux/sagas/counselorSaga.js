@@ -14,9 +14,12 @@ function* fetchCounselors() {
     }
 }
 
-function*  addNewCounselor() {
+function*  addNewCounselor(action) {
     try{
-        yield axios.post('/api/counselors/addNew')
+        yield axios.post('/api/counselors/addNew', action.payload)
+        yield put({
+            type: 'FETCH_COUNSELORS'
+        })
 
     }
     catch(error) {

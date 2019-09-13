@@ -23,18 +23,18 @@ router.get('/', (req, res) => {
  * POST route template
  */
 //add new counselors
-// router.post('/addNew', (req, res) => {
-//     let queryText = `INSERT INTO "counselors" ("name", "website", "phone_number", "description")
-//         VALUES($1, $2, $3, $4);`;
-//     pool.query(queryText, [req.body.name, req.body.website, req.body.phone_number, req.body.description])
-//         .then((result) => {
-//             res.sendStatus(200)
-//         })
-//         .catch((error) => {
-//             console.log(error)
-//             res.sendStatus(500)
-//         })
-// });
+router.post('/addNew', (req, res) => {
+    let queryText = `INSERT INTO "counselors" ("name", "website", "phone_number", "description")
+        VALUES($1, $2, $3, $4);`;
+    pool.query(queryText, [req.body.name, req.body.website, req.body.phone_number, req.body.description])
+        .then((result) => {
+            res.sendStatus(200)
+        })
+        .catch((error) => {
+            console.log(error)
+            res.sendStatus(500)
+        })
+});
 
 router.delete('/deleteCounselor/:id', (req,res)=> {
     let queryText = (`DELETE FROM "counselors" WHERE "id" = $1`)

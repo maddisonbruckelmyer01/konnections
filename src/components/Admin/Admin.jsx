@@ -41,6 +41,7 @@ class Admin extends Component {
         const { classes } = this.props;
         return (
             <div>
+            <h1>Users:</h1>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
                         <TableHead>
