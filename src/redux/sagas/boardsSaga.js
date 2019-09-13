@@ -56,6 +56,8 @@ function* deleteBoard(action) {
     }
 }
 
+
+
 function* boardsSaga() {
     yield takeLatest('FETCH_BOARDS', fetchBoards);
     yield takeLatest('ADD_BOARD', addBoard);

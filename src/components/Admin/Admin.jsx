@@ -28,6 +28,7 @@ class Admin extends Component {
             type: 'FETCH_USERS'
         })
         this.getBoards();
+        this.getCounselors();   
     }//end componentDidMount
 
     //get boards on page load
@@ -36,6 +37,23 @@ class Admin extends Component {
             type: 'FETCH_BOARDS'
         })
     }//end componentDidMount
+
+    //get counselors
+    getCounselors = () => {
+        this.props.dispatch({
+            type: 'FETCH_COUNSELORS'
+        })
+    }//end get counselors
+
+    //delete counselor
+    handleDelete = (id) => {
+        console.log('in delete')
+        this.props.dispatch({
+            type: 'DELETE_COUNSELOR',
+            payload: id
+        })
+        this.props.history.push('/admin')
+    }//end handleDelete
 
     //goes to addnewcounselor page
     handleClick = () => {
@@ -54,6 +72,11 @@ class Admin extends Component {
             payload: id
         })
     }// end handleBoardDelete
+
+    handleEdit = (id) => {
+        console.log('clicked', id)
+        this.props.history.push(`/editBoard/${id}`)
+    }
 
     render() {
         const { classes } = this.props;
@@ -87,8 +110,32 @@ class Admin extends Component {
                     </Table>
                 </Paper>
                 <button onClick={this.handleClick}>Add New Counselor</button>
-                <button onClick={this.handleDeleteClick}>Delete Counselor</button>
-                <Counselors />
+                <h1>Counselors:</h1>
+                <Paper className={classes.root}>
+                    <Table className={classes.table}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell>Website</TableCell>
+                                <TableCell>Phone Number</TableCell>
+                                <TableCell>Description</TableCell>
+                                <TableCell>Delete</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {this.props.counselors.map((counselor) => {
+                                return (<TableRow key={counselor.id}>
+                                    <TableCell>{counselor.name}</TableCell>
+                                    <TableCell><a href={counselor.website} target="_blank">Website</a></TableCell>
+                                    <TableCell>{counselor.phone_number}</TableCell>
+                                    <TableCell>{counselor.description}</TableCell>
+                                    <TableCell><button onClick={() => { this.handleDelete(counselor.id) }}>Delete</button></TableCell>
+                                </TableRow>)
+                            })
+                            }
+                        </TableBody>
+                    </Table>
+                </Paper>
                 <h1>Boards: </h1>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
@@ -105,7 +152,7 @@ class Admin extends Component {
                                 return (<TableRow key={board.id}>
                                         <TableCell>{board.board_name}</TableCell>
                                         <TableCell>{board.description}</TableCell>
-                                        <TableCell><button onClick={this.handleEdit}>Edit</button></TableCell>
+                                        <TableCell><button onClick={() => {this.handleEdit(board.id)}}>Edit</button></TableCell>
                                         <TableCell><button onClick={() => {this.handleBoardDelete(board.id)}}>Delete</button></TableCell>
                                     </TableRow>)
                             })}
@@ -120,7 +167,8 @@ class Admin extends Component {
 const mapStateToProps = (state) => {
     return {
         users: state.adminReducer,
-        boards: state.boardsReducer
+        boards: state.boardsReducer,
+        counselors: state.counselorReducer
     }
 }
 

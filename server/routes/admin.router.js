@@ -13,4 +13,22 @@ router.get('/users', (req, res) => {
         })
 })
 
+router.put('/editBoard', (req,res) => {
+    let queryText = `UPDATE "board" SET "board_name"=$1, "description"=$2 WHERE "id" = $3;`;
+    board_name = req.body.board_name
+    console.log(board_name)
+    description = req.body.description
+    console.log(description)
+    id = req.body.board_id
+    console.log(id)
+    pool.query(queryText, [board_name, description, id])
+        .then((result) => {
+            res.sendStatus(200)
+        })
+        .catch((error) => {
+            console.log(error)
+            res.sendStatus(500)
+        })
+})
+
 module.exports = router;

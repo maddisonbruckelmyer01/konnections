@@ -16,9 +16,19 @@ function *fetchUsers(action){
     }
 }
 
+function* editBoard(action) {
+    try {
+        yield axios.put(`/api/admin/editBoard`, action.payload)
+    }
+    catch (error) {
+        console.log('error on editing board', error)
+    }
+}
+
 
 function* adminSaga() {
     yield takeLatest('FETCH_USERS', fetchUsers);
+    yield takeLatest('EDIT_BOARD', editBoard)
 }
 
 export default adminSaga;
