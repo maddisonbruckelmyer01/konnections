@@ -49,5 +49,19 @@ router.post('/addNew', (req,res) => {
         })
 })
 
+//delete a board
+router.delete('/:id', (req,res) => {
+    let queryText = `DELETE FROM "board" WHERE "id" = $1;`
+    id = req.params.id
+    pool.query(queryText, [id])
+        .then((result) => {
+            res.sendStatus(200)
+        })
+        .catch((error) => {
+            console.log(error)
+            res.sendStatus(500)
+        })
+})
+
 
 module.exports = router;

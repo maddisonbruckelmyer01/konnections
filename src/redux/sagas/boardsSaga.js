@@ -44,10 +44,23 @@ function* addBoard(action) {
     }
 }
 
+function* deleteBoard(action) {
+    try{
+        yield axios.delete(`/api/boards/${action.payload}`, action.payload)
+        yield put({
+            type: 'FETCH_BOARDS'
+        })
+    }
+    catch(error) {
+        console.log('error on deleteing board', error)
+    }
+}
+
 function* boardsSaga() {
     yield takeLatest('FETCH_BOARDS', fetchBoards);
     yield takeLatest('ADD_BOARD', addBoard);
     yield takeLatest('FETCH_SPECIFIC_BOARD', fetchSpecificBoard);
+    yield takeLatest('DELETE_BOARD', deleteBoard)
 }
 
 export default boardsSaga;

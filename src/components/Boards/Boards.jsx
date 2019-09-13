@@ -1,5 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+const styles = theme => ({
+    root: {
+        width: '100%',
+        marginTop: theme.spacing(3),
+        overflowX: 'auto',
+    },
+    table: {
+        minWidth: 650,
+    },
+});
 
 class Boards extends Component {
 
@@ -57,17 +75,30 @@ class Boards extends Component {
     }//end boardClicker
 
     render() {
-        
+        const { classes } = this.props;
         return (
             <div>
-               {
-                   this.props.boards.map(board => {
-                     return  ( <><h1 key={board.id} onClick={() => {this.boardClicker(board.id)}}>
-                         {board.board_name}
-                    </h1>
-                     <h3>{board.description}</h3> </>)
-                   })
-               }
+            <h1>Boards:</h1>
+            <Paper className={classes.root}>
+                <Table className={classes.root}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Description</TableCell>
+                            <TableCell>Go To Board</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {this.props.boards.map((board)=>{
+                        return (<TableRow key={board.id}>
+                            <TableCell>{board.board_name}</TableCell>
+                            <TableCell>{board.description}</TableCell>
+                            <TableCell><button onClick={() => {this.boardClicker(board.id)}}>Go To Board</button></TableCell>
+                            </TableRow>)
+                    })}
+                    </TableBody>
+                </Table>
+            </Paper>
                 <button onClick={this.handleNewDirectClick}>Direct Messages</button>
                 <button onClick={this.handleNewBoardClick}>Create a new board</button>
             </div>
@@ -83,4 +114,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Boards);
+export default connect(mapStateToProps)(withStyles(styles)(Boards));

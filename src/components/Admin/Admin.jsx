@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Counselors from '../Counselors/Counselors';
+
 
 const styles = theme => ({
     root: {
@@ -25,6 +27,14 @@ class Admin extends Component {
         this.props.dispatch({
             type: 'FETCH_USERS'
         })
+        this.getBoards();
+    }//end componentDidMount
+
+    //get boards on page load
+    getBoards = () => {
+        this.props.dispatch({
+            type: 'FETCH_BOARDS'
+        })
     }//end componentDidMount
 
     //goes to addnewcounselor page
@@ -36,6 +46,14 @@ class Admin extends Component {
     handleDeleteClick = () => {
         this.props.history.push('/admin/deleteCounselor')
     }//end handleDeleteClick
+
+    //deletes bored
+    handleBoardDelete = (id) => {
+        this.props.dispatch({
+            type: 'DELETE_BOARD',
+            payload: id
+        })
+    }// end handleBoardDelete
 
     render() {
         const { classes } = this.props;
@@ -70,6 +88,30 @@ class Admin extends Component {
                 </Paper>
                 <button onClick={this.handleClick}>Add New Counselor</button>
                 <button onClick={this.handleDeleteClick}>Delete Counselor</button>
+                <Counselors />
+                <h1>Boards: </h1>
+                <Paper className={classes.root}>
+                    <Table className={classes.table}>
+                            <TableHead>
+                            <TableRow>
+                                <TableCell>Name of Board</TableCell>
+                                <TableCell>Description of Board</TableCell>
+                                <TableCell>Edit Board</TableCell>
+                                <TableCell>Delete Board</TableCell>
+                            </TableRow>
+                            </TableHead>
+                            <TableBody>
+                            {this.props.boards.map((board) =>{
+                                return (<TableRow key={board.id}>
+                                        <TableCell>{board.board_name}</TableCell>
+                                        <TableCell>{board.description}</TableCell>
+                                        <TableCell><button onClick={this.handleEdit}>Edit</button></TableCell>
+                                        <TableCell><button onClick={() => {this.handleBoardDelete(board.id)}}>Delete</button></TableCell>
+                                    </TableRow>)
+                            })}
+                            </TableBody>
+                    </Table>
+                </Paper>
             </div>
         )
     }
@@ -77,7 +119,8 @@ class Admin extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.adminReducer
+        users: state.adminReducer,
+        boards: state.boardsReducer
     }
 }
 
