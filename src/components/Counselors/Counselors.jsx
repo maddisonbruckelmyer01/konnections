@@ -50,7 +50,7 @@ class Counselors extends Component {
                     {this.props.counselorReducer.map((counselor) => {
                         return(<TableRow key={counselor.id}>
                             <TableCell>{counselor.name}</TableCell>
-                            <TableCell><a href={counselor.website}>Website</a></TableCell>
+                            <TableCell><a href={counselor.website} target="_blank">Website</a></TableCell>
                             <TableCell>{counselor.phone_number}</TableCell>
                             <TableCell>{counselor.description}</TableCell>
                             </TableRow>)
