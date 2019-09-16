@@ -29,6 +29,7 @@ class Messages extends Component {
                 board_id: id
             }
         })
+        document.getElementById('newMessage').value='';
     }//end handleSend
 
     //get messages from database
@@ -59,7 +60,7 @@ class Messages extends Component {
                 <h1>{this.props.specificBoard.board_name}</h1>
                 <p>{this.props.specificBoard.description}</p>
                 {messagesToDom}
-                <input placeholder="New Message" type="text" onChange={this.handleChange} />
+                <input id="newMessage" placeholder="New Message" type="text" onChange={this.handleChange} />
                 <button onClick={() => this.handleSend(this.props.specificBoard.id)}>Send</button>
             </div>
         )

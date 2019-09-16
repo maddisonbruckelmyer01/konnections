@@ -34,7 +34,7 @@ class SpecificDirectMessage extends Component {
             type: 'SEND_DIRECT_MESSAGE',
             payload: this.state
         })
-        document.getElementById('newMessage').value=''
+        document.getElementById('newMessage').value='';
         this.getMessages();
 
     }//end handleClick
