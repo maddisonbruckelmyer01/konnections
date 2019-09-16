@@ -37,12 +37,13 @@ router.get('/:receiver_username', (req, res) => {
 
 //send new direct message
 router.post('/sendDirectMessage', (req,res) => {
-    let queryText = `INSERT INTO "direct_messages" ("sender_id", "receiver_username", "message")
+    let queryText = `INSERT INTO "direct_messages" ("sender_username", "receiver_username", "message")
         VALUES($1, $2, $3);`;
-    let sender_id = req.user.id;
+    let sender_username = req.user.generated_username;
+    console.log(req.user)
     let receiver_username = req.body.receiver_username;
     let message = req.body.message;
-    pool.query(queryText, [sender_id, receiver_username, message])
+    pool.query(queryText, [sender_username, receiver_username, message])
         .then((result) => {
             res.sendStatus(201)
         })

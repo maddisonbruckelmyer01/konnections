@@ -6,7 +6,7 @@ class SpecificDirectMessage extends Component {
     state = {
         message: '',
         receiver_username: this.props.match.params.receiver_username,
-        sender_id: 0
+        sender_username: 0
     }
 
     componentDidMount() {
@@ -34,6 +34,9 @@ class SpecificDirectMessage extends Component {
             type: 'SEND_DIRECT_MESSAGE',
             payload: this.state
         })
+        document.getElementById('newMessage').value=''
+        this.getMessages();
+
     }//end handleClick
 
 
@@ -44,10 +47,10 @@ class SpecificDirectMessage extends Component {
             <div>
             {
                 this.props.specificMessages.map((text) => {
-                    return <p>{text.receiver_username}: {text.message}</p>
+                    return <p>{text.sender_username}: {text.message}</p>
                 })
             }
-            <input placeholder="New Message" type="text" onChange={this.handleChange}/>
+            <input id="newMessage" placeholder="New Message" type="text" onChange={this.handleChange}/>
             <button onClick={this.handleClick}>Send Message</button>
             </div>
         )
