@@ -4,7 +4,7 @@ const router = express.Router();
 
 //get direct messages
 router.get('/', (req,res) => {
-    let queryText = `SELECT * FROM "direct_messages" WHERE "sender_id" = $1;`;
+    let queryText = `SELECT * FROM "direct_messages" WHERE "sender_id" = $1 ORDER BY "receiver_username";`;
     sender_id = req.user.id
     pool.query(queryText, [sender_id])
         .then((result) => {

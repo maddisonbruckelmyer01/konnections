@@ -6,7 +6,7 @@ import counselorReducer from './counselorReducer';
 import boardsReducer from './boardsReducer';
 import messagesReducer from './messagesReducer';
 import specificBoardReducer from './specificBoardReducer';
-import directMessageReducer from './directMessagesReducer';
+import directMessagesReducer from './directMessagesReducer';
 // import alertReducer from './alertReducer';
 import adminReducer from './adminReducer';
 
@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   boardsReducer,
   messagesReducer,
   specificBoardReducer,
-  directMessageReducer,
+  directMessagesReducer,
   // alertReducer,
   adminReducer
 });

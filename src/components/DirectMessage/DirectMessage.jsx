@@ -21,13 +21,13 @@ class DirectMessage extends Component {
     }//end handleClick
 
     render() {
-        // let messagesToDom = this.props.messages.map((text) => {
-        //     return <p>{text.message}</p>
-        // })
+        let messagesToDom = this.props.messages.map((text) => {
+            return <p>{text.receiver_username}: {text.message}</p>
+        })
         
         return (
             <div>  
-                {JSON.stringify(this.props.messages)}
+                {messagesToDom}
                 <button onClick={this.handleClick}>Create New Direct Message</button>
             </div>
         )
@@ -36,7 +36,7 @@ class DirectMessage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        messages: state.directMessagesReducer
+      messages: state.directMessagesReducer
     }
 }
 

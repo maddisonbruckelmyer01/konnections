@@ -7,15 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import moment from 'moment';
-
-
-let time = moment();
-
-let current = time.format('dddd, MMMM Do YYYY, h:mm:ss:ms a')
-
-let update = function () 
-
+import './Boards.css';
 
 const styles = theme => ({
     root: {
@@ -85,14 +77,9 @@ class Boards extends Component {
 
     render() {
         const { classes } = this.props;
-        console.log(time.format());
-        console.log(time.format('ll'))
-        console.log(time.format('dddd, MMMM Do YYYY, h:mm:ss a'))
-        console.log(current)
         return (
             <div>
-            <h1>Boards:</h1>
-            {current}
+            <h1 className="board">Boards:</h1>
             <Paper className={classes.root}>
                 <Table className={classes.root}>
                     <TableHead>
