@@ -41,9 +41,9 @@ class AddNewCounselor extends Component {
                     <input placeholder="Website Address" type="text" onChange={(event, property)=> {this.handleChange(event, 'website')}}/><br></br>
                     <label>Phone Number: </label>
                     {/* <p>If they do not have a phone number put "No Phone Number"</p> */}
-                    <input placeholder="Phone Number" type="number" onChange={(event,property) => {this.handleChange(event, 'phone_number')}}/><br></br>
+                    <input placeholder="Phone Number" type="text" onChange={(event,property) => {this.handleChange(event, 'phone_number')}}/><br></br>
                     <label>Description of what they help with: </label>
-                    <input placeholder="Description" type="text"onChange={(event, property) => {this.handleChange(event, 'description')}}/><br></br>
+                    <textarea rows="4" placeholder="Description" onChange={(event,property) => {this.handleChange(event, 'description')} }></textarea><br></br>
                     <input type="button" value="Submit" onClick={this.handleClick}/>
                 </form>
             </div>

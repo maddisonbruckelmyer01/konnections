@@ -1,0 +1,98 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
+const styles = theme => ({
+    root: {
+        width: '100%',
+        marginTop: theme.spacing(3),
+        overflowX: 'auto',
+    },
+    table: {
+        minWidth: 650,
+    },
+});
+
+class AdminCounselors extends Component {
+
+    componentDidMount () {
+        this.getCounselors();
+    }//end componentDidMount
+
+    //get counselors from database
+    getCounselors = () => {
+        this.props.dispatch({
+            type: 'FETCH_COUNSELORS'
+        })
+    }//end getCounselors
+
+    //delete counselor
+    handleDelete = (id) => {
+        console.log('in delete')
+        this.props.dispatch({
+            type: 'DELETE_COUNSELOR',
+            payload: id
+        })
+        this.props.history.push('/admin')
+    }//end handleDelete
+
+    //goes to addnewcounselor page
+    handleClick = () => {
+        this.props.history.push('/admin/addNewCounselor')
+    }//end handleClick
+
+    //goes to deleteCounselor page
+    handleDeleteClick = () => {
+        this.props.history.push('/admin/deleteCounselor')
+    }//end handleDeleteClick
+
+    render() {
+        const {classes} = this.props;
+        return (
+            <div>
+                <button onClick={this.handleClick}>Add New Counselor</button>
+                <h1>Counselors:</h1>
+                <Paper className={classes.root}>
+                    <Table className={classes.table}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell>Website</TableCell>
+                                <TableCell>Phone Number</TableCell>
+                                <TableCell>Description</TableCell>
+                                <TableCell>Delete</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {this.props.counselors.map((counselor) => {
+                                return (<TableRow key={counselor.id}>
+                                    <TableCell>{counselor.name}</TableCell>
+                                    <TableCell><a href={counselor.website} target="_blank" rel="noopener noreferrer">Website</a></TableCell>
+                                    <TableCell>{counselor.phone_number}</TableCell>
+                                    <TableCell>{counselor.description}</TableCell>
+                                    <TableCell><button onClick={() => { this.handleDelete(counselor.id) }}>Delete</button></TableCell>
+                                </TableRow>)
+                            })
+                            }
+                        </TableBody>
+                    </Table>
+                </Paper>
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        counselors: state.counselorReducer
+    }
+}
+
+export default withRouter(connect(mapStateToProps)(withStyles(styles)(AdminCounselors)));

@@ -44,8 +44,6 @@ class EditBoard extends Component {
     render() {
         return (
             <div>
-            {JSON.stringify(this.state)}
-            {JSON.stringify(this.props)}
                 <form>
                     <input placeholder="name" type="text" onChange={(event, property) => {this.handleChange(event, 'board_name')}}/>
                     <input placeholder="description" type="text" onChange={(event, property) =>{this.handleChange(event, 'description')}}/>
