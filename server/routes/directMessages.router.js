@@ -4,7 +4,8 @@ const router = express.Router();
 
 //get direct messages
 router.get('/', (req,res) => {
-    let queryText = `SELECT "receiver_username" FROM "direct_messages" WHERE "sender_id" = $1 GROUP BY "receiver_username";`;
+    let queryText = `SELECT "receiver_username" FROM "direct_messages" 
+        WHERE "sender_id" = $1 GROUP BY "receiver_username";`;
     sender_id = req.user.id
     pool.query(queryText, [sender_id])
         .then((result) => {
@@ -15,6 +16,23 @@ router.get('/', (req,res) => {
             console.log('error on server getting direct messages', error)
             res.sendStatus(500);
         })
+})
+
+//get specific messages
+router.get('/:receiver_username', (req, res) => {
+    let specifcMessages = req.params.receiver_username
+    console.log('receiver_username', specifcMessages)
+    let queryText = `SELECT * FROM "direct_messages" WHERE "receiver_username" = $1;`;
+    pool.query(queryText, [specifcMessages])
+        .then((result) => {
+            console.log('specifc direct messages:', result.rows)
+            res.send(result.rows)
+        })
+        .catch((error) => {
+            console.log('error on server getting specific direct messsages: ', error)
+            res.sendStatus(500);
+        })
+
 })
 
 //send new direct message

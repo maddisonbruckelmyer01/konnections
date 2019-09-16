@@ -27,6 +27,7 @@ import CreateDirectMessage from '../CreateDirectMessage/CreateDirectMessage';
 import Admin from '../Admin/Admin';
 import AddNewCounselor from '../AddNewCounselor/AddNewCounselor';
 import EditBoard from '../EditBoard/EditBoard';
+import SpecificDirectMessage from '../SpecificDirectMessage/SpecificDirectMessage';
 
 class App extends Component {
   componentDidMount () {
@@ -62,6 +63,12 @@ class App extends Component {
               exact
               path='/directMessage'
               component={DirectMessage}
+            />
+
+            <ProtectedRoute
+              exact
+              path='/directMessage/:receiver_username'
+              component={SpecificDirectMessage}
             />
 
             <ProtectedRoute
