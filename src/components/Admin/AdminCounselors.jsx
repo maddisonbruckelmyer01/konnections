@@ -71,7 +71,6 @@ class AdminCounselors extends Component {
         const {classes} = this.props;
         return (
             <div>
-                <button onClick={this.handleClick}>Add New Counselor</button>
                 <h1>Counselors:</h1>
                 <Paper className={classes.root}>
                     <Table className={classes.table}>
@@ -88,7 +87,16 @@ class AdminCounselors extends Component {
                             {this.props.counselors.map((counselor) => {
                                 return (<TableRow key={counselor.id}>
                                     <TableCell>{counselor.name}</TableCell>
-                                    <TableCell><a href={counselor.website} target="_blank" rel="noopener noreferrer">Website</a></TableCell>
+                                    <TableCell>
+                                        <Button
+                                            href={counselor.website}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className={classes.button}
+                                        >
+                                            Open Website
+                                        </Button>
+                                    </TableCell>
                                     <TableCell>{counselor.phone_number}</TableCell>
                                     <TableCell>{counselor.description}</TableCell>
                                     <TableCell>
@@ -108,6 +116,14 @@ class AdminCounselors extends Component {
                         </TableBody>
                     </Table>
                 </Paper>
+                <Button 
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    onClick={this.handleClick}
+                >
+                    Add New Counselor
+                </Button>
             </div>
         )
     }

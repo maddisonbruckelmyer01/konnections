@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Icon from '@material-ui/core/Icon';
 
 const styles = theme => ({
     root: {
@@ -86,11 +87,13 @@ class AdminBoards extends Component {
                                     <TableCell>{board.board_name}</TableCell>
                                     <TableCell>{board.description}</TableCell>
                                     <TableCell>
-                                        <button 
+                                        <Button 
+                                            variant="contained"
+                                            color="primary"
                                             onClick={() => { this.handleEdit(board) }}
                                         >
                                             Edit
-                                        </button>
+                                        </Button>
                                     </TableCell>
                                     <TableCell>
                                         <Button 
