@@ -8,6 +8,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
     root: {
@@ -18,6 +20,18 @@ const styles = theme => ({
     table: {
         minWidth: 650,
     },
+    button: {
+        margin: theme.spacing.unit
+    },
+    leftIcon: {
+        marginRight: theme.spacing.unit
+    },
+    rightIcon: {
+        marginLeft: theme.spacing.unit
+    },
+    iconSmall: {
+        fontSize: 20
+    }
 });
 
 class AdminBoards extends Component {
@@ -71,8 +85,24 @@ class AdminBoards extends Component {
                                 return (<TableRow key={board.id}>
                                     <TableCell>{board.board_name}</TableCell>
                                     <TableCell>{board.description}</TableCell>
-                                    <TableCell><button onClick={() => { this.handleEdit(board) }}>Edit</button></TableCell>
-                                    <TableCell><button onClick={() => { this.handleBoardDelete(board.id) }}>Delete</button></TableCell>
+                                    <TableCell>
+                                        <button 
+                                            onClick={() => { this.handleEdit(board) }}
+                                        >
+                                            Edit
+                                        </button>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button 
+                                            variant="contained" 
+                                            color="secondary" 
+                                            className={classes.button} 
+                                            onClick={() => { this.handleBoardDelete(board.id) }}
+                                        >
+                                            Delete 
+                                        <DeleteIcon className={classes.rightIcon} />
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>)
                             })}
                         </TableBody>

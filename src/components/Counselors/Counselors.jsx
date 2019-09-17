@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     root: {
@@ -17,6 +18,12 @@ const styles = theme => ({
     table: {
         minWidth: 650,
     },
+    button: {
+        margin: theme.spacing.unit
+    },
+    input: {
+        display: 'none'
+    }
 });
 
 class Counselors extends Component {
@@ -50,7 +57,16 @@ class Counselors extends Component {
                     {this.props.counselorReducer.map((counselor) => {
                         return(<TableRow key={counselor.id}>
                             <TableCell>{counselor.name}</TableCell>
-                            <TableCell><a href={counselor.website} target="_blank" rel="noopener noreferrer">Website</a></TableCell>
+                            <TableCell>
+                                <Button 
+                                    href={counselor.website}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className={classes.button}
+                                >
+                                    Open Website
+                                </Button>
+                            </TableCell>
                             <TableCell>{counselor.phone_number}</TableCell>
                             <TableCell>{counselor.description}</TableCell>
                             </TableRow>)

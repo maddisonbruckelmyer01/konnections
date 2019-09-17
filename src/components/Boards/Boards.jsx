@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import './Boards.css';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     root: {
@@ -18,6 +19,12 @@ const styles = theme => ({
     table: {
         minWidth: 650,
     },
+   button: {
+       margin: theme.spacing.unit
+   },
+   input: {
+       display: 'none'
+   }
 });
 
 class Boards extends Component {
@@ -94,14 +101,33 @@ class Boards extends Component {
                         return (<TableRow key={board.id}>
                             <TableCell>{board.board_name}</TableCell>
                             <TableCell>{board.description}</TableCell>
-                            <TableCell><button onClick={() => {this.boardClicker(board.id)}}>Go To Board</button></TableCell>
+                            <TableCell>
+                                <Button 
+                                    className={classes.button}
+                                    onClick={() => {this.boardClicker(board.id)}}
+                                >
+                                    Go To Board
+                                </Button>
+                            </TableCell>
                             </TableRow>)
                     })}
                     </TableBody>
                 </Table>
             </Paper>
-                <button onClick={this.handleNewDirectClick}>Direct Messages</button>
-                <button onClick={this.handleNewBoardClick}>Create a new board</button>
+                <Button 
+                    variant="contained"
+                    className={classes.button}
+                    onClick={this.handleNewDirectClick}
+                >
+                    Direct Messages
+                </Button>
+                <Button 
+                    variant="contained"
+                    className={classes.button}
+                    onClick={this.handleNewBoardClick}
+                >
+                    Create a new board
+                </Button>
             </div>
         )
     }

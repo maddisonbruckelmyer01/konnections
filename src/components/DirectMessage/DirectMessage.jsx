@@ -78,10 +78,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(withStyles(styles)(DirectMessage)); 
-
-
-// {
-//     this.props.messages.map((text) => {
-//         return <p>{text}</p>
-//     })
-// }

@@ -8,6 +8,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const styles = theme => ({
     root: {
@@ -18,6 +20,18 @@ const styles = theme => ({
     table: {
         minWidth: 650,
     },
+    button: {
+        margin: theme.spacing.unit
+    },
+    leftIcon: {
+        marginRight: theme.spacing.unit
+    },
+    rightIcon: {
+        marginLeft: theme.spacing.unit
+    },
+    iconSmall: {
+        fontSize: 20
+    }
 });
 
 class AdminCounselors extends Component {
@@ -77,7 +91,17 @@ class AdminCounselors extends Component {
                                     <TableCell><a href={counselor.website} target="_blank" rel="noopener noreferrer">Website</a></TableCell>
                                     <TableCell>{counselor.phone_number}</TableCell>
                                     <TableCell>{counselor.description}</TableCell>
-                                    <TableCell><button onClick={() => { this.handleDelete(counselor.id) }}>Delete</button></TableCell>
+                                    <TableCell>
+                                        <Button 
+                                            variant="contained"
+                                            color="secondary"
+                                            className={classes.button}
+                                            onClick={() => { this.handleDelete(counselor.id) }}
+                                        >
+                                            Delete
+                                        <DeleteIcon className={classes.rightIcon} />
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>)
                             })
                             }
