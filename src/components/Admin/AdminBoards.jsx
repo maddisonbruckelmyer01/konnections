@@ -42,9 +42,13 @@ class AdminBoards extends Component {
     }// end handleBoardDelete
 
     //edits board
-    handleEdit = (id) => {
-        console.log('clicked', id)
-        this.props.history.push(`/editBoard/${id}`)
+    handleEdit = (board) => {
+        console.log('clicked', board)
+        this.props.history.push(`/editBoard/${board.id}`)
+        this.props.dispatch({
+            type: 'GET_ALL',
+            payload: board
+        })
     }//end handleEdit
 
     render() {
@@ -67,7 +71,7 @@ class AdminBoards extends Component {
                                 return (<TableRow key={board.id}>
                                     <TableCell>{board.board_name}</TableCell>
                                     <TableCell>{board.description}</TableCell>
-                                    <TableCell><button onClick={() => { this.handleEdit(board.id) }}>Edit</button></TableCell>
+                                    <TableCell><button onClick={() => { this.handleEdit(board) }}>Edit</button></TableCell>
                                     <TableCell><button onClick={() => { this.handleBoardDelete(board.id) }}>Delete</button></TableCell>
                                 </TableRow>)
                             })}

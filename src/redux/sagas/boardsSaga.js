@@ -13,7 +13,7 @@ function* fetchBoards() {
     }
 }
 
-function *fetchSpecificBoard(action) {
+function* fetchSpecificBoard(action) {
     try{
         let response = yield axios.get(`/api/boards/${action.payload}`)
         console.log('saga response is', response.data)

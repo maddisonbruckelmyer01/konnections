@@ -32,7 +32,7 @@ class CreateDirectMessage extends Component {
             type: 'SEND_DIRECT_MESSAGE',
             payload: this.state
         })
-        this.props.history.push('/directMessage')
+        this.props.history.push(`/directMessage`)
     }//end handleClick
 
     render() {

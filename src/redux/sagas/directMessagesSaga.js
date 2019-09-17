@@ -43,7 +43,7 @@ function* fetchSpecificDirectMessages(action) {
 function* directMessagesSaga() {
     yield takeLatest('FETCH_DIRECT_MESSAGES', fetchDirectMessages);
     yield takeLatest('SEND_DIRECT_MESSAGE', sendDirectMessages);
-    yield takeLatest('FETCH_MESSAGES', fetchSpecificDirectMessages);
+    yield takeLatest('FETCH_MESSAGES_SPECIFIC', fetchSpecificDirectMessages);
 }
 
 export default directMessagesSaga;

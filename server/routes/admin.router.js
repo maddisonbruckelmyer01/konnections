@@ -19,7 +19,7 @@ router.put('/editBoard', (req,res) => {
     console.log(board_name)
     description = req.body.description
     console.log(description)
-    id = req.body.board_id
+    id = req.body.id
     console.log(id)
     pool.query(queryText, [board_name, description, id])
         .then((result) => {

@@ -3,16 +3,16 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 //get direct messages
-router.get('/', (req,res) => {
+router.get('/', (req, res) => {
     let queryText = `SELECT "receiver_username" FROM "direct_messages" 
-        WHERE "sender_id" = $1 GROUP BY "receiver_username";`;
-    sender_id = req.user.id
+        WHERE "sender_username" = $1 GROUP BY "receiver_username";`;
+    sender_id = req.user.generated_username
     pool.query(queryText, [sender_id])
         .then((result) => {
             console.log('direct messages:', result.rows)
             res.send(result.rows)
         })
-        .catch ((error) => {
+        .catch((error) => {
             console.log('error on server getting direct messages', error)
             res.sendStatus(500);
         })
@@ -36,7 +36,7 @@ router.get('/:receiver_username', (req, res) => {
 })
 
 //send new direct message
-router.post('/sendDirectMessage', (req,res) => {
+router.post('/sendDirectMessage', (req, res) => {
     let queryText = `INSERT INTO "direct_messages" ("sender_username", "receiver_username", "message")
         VALUES($1, $2, $3);`;
     let sender_username = req.user.generated_username;
@@ -52,5 +52,6 @@ router.post('/sendDirectMessage', (req,res) => {
             res.sendStatus(500)
         })
 })
+
 
 module.exports = router;

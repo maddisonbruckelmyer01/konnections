@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Chance from 'chance';
 
+
 let chance = new Chance();
+
+
 
 class RegisterPage extends Component {
   state = {
@@ -45,6 +48,7 @@ class RegisterPage extends Component {
   }
 
   render() {
+    const {classes} = this.props;
     return (
       <div>
         {this.props.errors.registrationMessage && (
