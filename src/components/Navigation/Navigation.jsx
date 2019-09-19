@@ -15,12 +15,13 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import {Link} from 'react-router-dom';
 
-const drawerWidth = 230;
+const drawerWidth = 240;
  
 const styles = theme => ({
     root: {
         display: 'flex',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        marginRight: 1000
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -75,6 +76,7 @@ function ClippedDrawer(props) {
                 <List>
                     {['Home', 'Info', 'Boards', 'Counselors', 'Admin', 'About'].map((text, index) => (
                         <ListItem button key={text}>
+                            <Link to="/boards">Boards</Link>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}

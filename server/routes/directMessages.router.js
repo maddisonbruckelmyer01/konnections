@@ -4,10 +4,11 @@ const router = express.Router();
 
 //get direct messages
 router.get('/', (req, res) => {
-    let queryText = `SELECT "receiver_username" FROM "direct_messages" 
-        WHERE "sender_username" = $1 GROUP BY "receiver_username";`;
-    sender_id = req.user.generated_username
-    pool.query(queryText, [sender_id])
+    let queryText = `SELECT "receiver" FROM "conversations" 
+        WHERE "sender" = $1 GROUP BY "receiver";`;
+    sender = req.user.generated_username
+    console.log('user is: ',req.user.generated_username)
+    pool.query(queryText, [sender])
         .then((result) => {
             console.log('direct messages:', result.rows)
             res.send(result.rows)
@@ -17,22 +18,19 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         })
 })
-
-//get specific messages
-router.get('/:receiver_username', (req, res) => {
-    let specifcMessages = req.params.receiver_username
-    console.log('receiver_username', specifcMessages)
-    let queryText = `SELECT * FROM "direct_messages" WHERE "receiver_username" = $1;`;
-    pool.query(queryText, [specifcMessages])
+router.get('/:receiver', (req,res) => {
+    let receiver = req.params.receiver
+    console.log('receiver:', receiver)
+    let queryText = `SELECT * FROM "direct_messages" WHERE ("receiver_username" = $1 OR "sender_username" = $1);`
+    pool.query(queryText, [receiver])
         .then((result) => {
-            console.log('specifc direct messages:', result.rows)
+            console.log('messages are:' , result.rows)
             res.send(result.rows)
         })
         .catch((error) => {
-            console.log('error on server getting specific direct messsages: ', error)
+            console.log('error on getting specific direct messages:', error)
             res.sendStatus(500);
         })
-
 })
 
 //send new direct message
@@ -45,10 +43,10 @@ router.post('/sendDirectMessage', (req, res) => {
     let message = req.body.message;
     pool.query(queryText, [sender_username, receiver_username, message])
         .then((result) => {
-            res.sendStatus(201)
+            res.sendStatus(201);
         })
         .catch((error) => {
-            console.log('error on sending direct message', error)
+            console.log('error on posting in conversations', error)
             res.sendStatus(500)
         })
 })

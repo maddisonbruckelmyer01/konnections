@@ -5,7 +5,7 @@ class SpecificDirectMessage extends Component {
 
     state = {
         message: '',
-        receiver_username: this.props.match.params.receiver_username,
+        receiver_username: this.props.match.params.receiver,
         sender_username: 0,
     }
 
@@ -17,7 +17,7 @@ class SpecificDirectMessage extends Component {
     getMessages = () => {
         this.props.dispatch({
             type: 'FETCH_MESSAGES_SPECIFIC',
-            payload: this.props.match.params.receiver_username
+            payload: this.props.match.params.receiver
         })
     }//end getMessages
 
@@ -45,6 +45,7 @@ class SpecificDirectMessage extends Component {
         console.log(this.state)
         return (
             <div>
+            {JSON.stringify(this.props)}
             {
                 this.props.specificMessages.map((text) => {
                     return <p>{text.sender_username}: {text.message}</p>
