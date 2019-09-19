@@ -24,8 +24,22 @@ function* fetchUser() {
   }
 }
 
+function* fetchAllUsers() {
+  try {
+    let response = yield axios.get('/api/user/all')
+    yield put ({
+      type: 'SET_ALL_USERS', 
+      payload: response.data
+    })
+  }
+  catch(error) {
+    console.log('failed to get all users', error)
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('FETCH_ALL_USERS', fetchAllUsers)
 }
 
 export default userSaga;

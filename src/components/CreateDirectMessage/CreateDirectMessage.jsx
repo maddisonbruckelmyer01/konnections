@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+
 class CreateDirectMessage extends Component {
+
+    componentDidMount() {
+        this.props.dispatch({
+            type: 'FETCH_ALL_USERS'
+        })
+    }//end componentDidMount
 
     state = { 
         receiver_username: '',
@@ -38,15 +45,26 @@ class CreateDirectMessage extends Component {
     render() {
         return (
             <div>
-            {JSON.stringify(this.state)}
+            <h3>Usernames to pick from:</h3>
+            {
+                this.props.users.map((user) => {
+                    return <li>{user.generated_username}</li>
+                })
+            }
                 <form>
                     <input placeholder="Username" type="text" onChange={this.handleUsername}/>
                     <input placeholder="New Message" type="text" onChange={this.handleMessage}/>
                     <input type="button" value="Send" onClick={this.handleClick}/>
-                </form>
+                </form>     
             </div>
         )
     }
 }
 
-export default connect()(CreateDirectMessage);
+const mapStateToProps = (state) => {
+    return {
+        users: state.allUsersReducer
+    }
+}
+
+export default connect(mapStateToProps)(CreateDirectMessage);

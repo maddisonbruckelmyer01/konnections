@@ -49,4 +49,18 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+//get all users from the database
+router.get('/all', (req,res) => {
+  let queryText = `SELECT * FROM "user";`;
+  pool.query(queryText)
+      .then((result) => {
+        console.log('the users are' ,result.rows)
+        res.send(result.rows)
+      })
+      .catch((error) => {
+        console.log('error on getting all the users', error)
+        res.sendStatus(500)
+      })
+})
+
 module.exports = router;
