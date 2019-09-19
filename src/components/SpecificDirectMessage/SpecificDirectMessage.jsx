@@ -47,7 +47,7 @@ class SpecificDirectMessage extends Component {
             <div>
             {
                 this.props.specificMessages.map((text) => {
-                    return <p>{text.sender_username}: {text.message}</p>
+                    return <p key={text.id}>{text.sender_username}: {text.message}</p>
                 })
             }
             <input id="newMessage" placeholder="New Message" type="text" onChange={this.handleChange}/>

@@ -5,18 +5,6 @@ import Chance from 'chance';
 
 let chance = new Chance();
 
-const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
-  }
-})
-
 class RegisterPage extends Component {
   state = {
     username: '',
@@ -58,7 +46,6 @@ class RegisterPage extends Component {
   }
 
   render() {
-    const {classes} = this.props;
     return (
       <div>
         {this.props.errors.registrationMessage && (
@@ -163,5 +150,5 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(RegisterPage));
+export default connect(mapStateToProps)(RegisterPage);
 
