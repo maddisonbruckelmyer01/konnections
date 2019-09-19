@@ -1,9 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 //send messages
-router.post('/sendMessage', (req,res) => {
+router.post('/sendMessage', rejectUnauthenticated, (req,res) => {
     let newMessage = req.body.message;
     let generated_username = req.user.generated_username;
     let board_id = req.body.board_id;
@@ -22,7 +23,7 @@ router.post('/sendMessage', (req,res) => {
 
 })
 //get messages for each board
-router.get('/:id', (req,res) => {
+router.get('/:id', rejectUnauthenticated, (req,res) => {
     let board_id = req.params.id;
     console.log('board id is', board_id)
     let queryText = `SELECT * FROM "messages" WHERE "board_id" = $1;`;

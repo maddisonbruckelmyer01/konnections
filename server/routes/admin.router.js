@@ -1,8 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+
 //get all users from the database for the admin
-router.get('/users', (req, res) => {
+router.get('/users', rejectUnauthenticated, (req, res) => {
     let queryText = `SELECT * FROM "user";`;
     pool.query(queryText) 
         .then((result) => {
@@ -13,7 +15,7 @@ router.get('/users', (req, res) => {
         })
 })
 
-router.put('/editBoard', (req,res) => {
+router.put('/editBoard', rejectUnauthenticated, (req,res) => {
     let queryText = `UPDATE "board" SET "board_name"=$1, "description"=$2 WHERE "id" = $3;`;
     board_name = req.body.board_name
     console.log(board_name)

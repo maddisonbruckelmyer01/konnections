@@ -1,9 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 //get direct messages
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     let queryText = `SELECT "receiver_username" FROM "direct_messages" 
         WHERE "sender_username" = $1 GROUP BY "receiver_username";`;
     sender = req.user.generated_username
@@ -18,7 +19,7 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         })
 })
-router.get('/:receiver_username', (req,res) => {
+router.get('/:receiver_username', rejectUnauthenticated, (req,res) => {
     let receiver = req.params.receiver_username
     console.log('receiver:', receiver)
     let queryText = `SELECT * FROM "direct_messages" WHERE ("receiver_username" = $1 OR "sender_username" = $1);`
@@ -34,7 +35,7 @@ router.get('/:receiver_username', (req,res) => {
 })
 
 //send new direct message
-router.post('/sendDirectMessage', (req, res) => {
+router.post('/sendDirectMessage', rejectUnauthenticated, (req, res) => {
     let queryText = `INSERT INTO "direct_messages" ("sender_username", "receiver_username", "message")
         VALUES($1, $2, $3);`;
     let sender_username = req.user.generated_username;

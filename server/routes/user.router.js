@@ -50,7 +50,7 @@ router.post('/logout', (req, res) => {
 });
 
 //get all users from the database
-router.get('/all', (req,res) => {
+router.get('/all', rejectUnauthenticated, (req,res) => {
   let queryText = `SELECT * FROM "user";`;
   pool.query(queryText)
       .then((result) => {

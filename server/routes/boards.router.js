@@ -1,9 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 //get boards
-router.get('/', (req,res) => {
+router.get('/', rejectUnauthenticated, (req,res) => {
     let queryText = `SELECT * FROM "board";`;
     pool.query(queryText)
         .then((result) => {
@@ -17,7 +18,7 @@ router.get('/', (req,res) => {
 })
 
 //get specific board
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     let specificboard = req.params.id 
     console.log('this board id is', specificboard)
     let queryText = `SELECT * FROM "board" WHERE "id" = $1;`;
@@ -33,7 +34,7 @@ router.get('/:id', (req, res) => {
 })
 
 //add new board
-router.post('/addNew', (req,res) => {
+router.post('/addNew', rejectUnauthenticated, (req,res) => {
     let queryText = `INSERT INTO "board" ("board_name", "description") 
         VALUES ($1, $2);`;
     let board_name = req.body.board_name;
@@ -50,7 +51,7 @@ router.post('/addNew', (req,res) => {
 })
 
 //delete a board
-router.delete('/:id', (req,res) => {
+router.delete('/:id', rejectUnauthenticated, (req,res) => {
     let queryText = `DELETE FROM "board" WHERE "id" = $1;`
     let secondqueryText = `DELETE FROM "messages" WHERE "board_id" = $1;`;
     let id = req.params.id
