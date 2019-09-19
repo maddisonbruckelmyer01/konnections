@@ -39,8 +39,8 @@ class DirectMessage extends Component {
     }//end handleClick
 
     //go to specific direct messages
-    messagesClick = (receiver_username) => {
-        this.props.history.push(`/directMessage/${receiver_username}`)
+    messagesClick = (receiver) => {
+        this.props.history.push(`/directMessage/${receiver}`)
     }//end messagesClick
 
     render() {
@@ -58,8 +58,8 @@ class DirectMessage extends Component {
                     <TableBody>
                     {this.props.messages.map((text) => {
                         return(<TableRow key={text.id}>
-                            <TableCell>{text.receiver_username}</TableCell>
-                            <TableCell><button onClick={() => {this.messagesClick(text.receiver_username)}}>Go To Messages</button></TableCell>
+                            <TableCell>{text.receiver}</TableCell>
+                            <TableCell><button onClick={() => {this.messagesClick(text.receiver)}}>Go To Messages</button></TableCell>
                             </TableRow>)
                     })}
                     </TableBody>

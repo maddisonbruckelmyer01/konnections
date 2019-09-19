@@ -29,17 +29,21 @@ import AddNewCounselor from '../AddNewCounselor/AddNewCounselor';
 import EditBoard from '../EditBoard/EditBoard';
 import SpecificDirectMessage from '../SpecificDirectMessage/SpecificDirectMessage';
 
+
+
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
   }
 
   render() {
+   
     return (
       <Router>
         <div>
-          <Nav />
-
+          
+            
+        <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -68,7 +72,7 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path='/directMessage/:receiver_username'
+              path='/directMessage/:receiver'
               component={SpecificDirectMessage}
             />
 

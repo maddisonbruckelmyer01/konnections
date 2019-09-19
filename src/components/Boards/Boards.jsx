@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import './Boards.css';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     root: {
@@ -24,6 +25,14 @@ const styles = theme => ({
    },
    input: {
        display: 'none'
+   },
+   gridRoot: {
+       flexGrow: 1
+   },
+   paper: {
+       padding: theme.spacing.unit *2,
+       textAlign: 'center',
+       color: theme.palette.text.secondary
    }
 });
 
@@ -86,6 +95,12 @@ class Boards extends Component {
         const { classes } = this.props;
         return (
             <div>
+            <Grid 
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+            ></Grid>
             <h1 className="board">Boards:</h1>
             <Paper className={classes.root}>
                 <Table className={classes.root}>
