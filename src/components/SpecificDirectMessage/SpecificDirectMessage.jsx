@@ -1,5 +1,24 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Button from '@material-ui/core/Button';
+import {withStyles} from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input'
+
+const styles = theme => ({
+    button: {
+        margin: theme.spacing.unit
+    },
+    input: {
+        display: 'none'
+    },
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap'
+    },
+    inputInput: {
+        margin: theme.spacing.unit
+    }
+})
 
 class SpecificDirectMessage extends Component {
 
@@ -43,6 +62,7 @@ class SpecificDirectMessage extends Component {
 
     render() {
         console.log(this.state)
+        const {classes} = this.props;
         return (
             <div>
             {
@@ -50,8 +70,18 @@ class SpecificDirectMessage extends Component {
                     return <p key={text.id}>{text.sender_username}: {text.message}</p>
                 })
             }
-            <input id="newMessage" placeholder="New Message" type="text" onChange={this.handleChange}/>
-            <button onClick={this.handleClick}>Send Message</button>
+            <div className={classes.container}>
+                <Input
+                    id="newMessage"
+                    placeholder="New Message"
+                    onChange={this.handleChange}
+                    className={classes.inputInput}
+                    inputProps={{
+                        'aria-label': 'Description'
+                    }}
+                />
+            </div>
+            <Button variant="contained" color="primary" className={classes.button} onClick={this.handleClick}>Send Message</Button>
             </div>
         )
     }
@@ -63,4 +93,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(SpecificDirectMessage);
+export default connect(mapStateToProps)(withStyles(styles)(SpecificDirectMessage));

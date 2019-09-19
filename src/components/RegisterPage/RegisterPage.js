@@ -66,6 +66,7 @@ class RegisterPage extends Component {
                 name="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
+                required
               />
             </label>
           </div>
@@ -77,6 +78,7 @@ class RegisterPage extends Component {
                 name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
+                required
               />
             </label>
           </div>
@@ -87,6 +89,7 @@ class RegisterPage extends Component {
               name="first_name"
               value={this.state.first_name}
               onChange={this.handleInputChangeFor('first_name')}
+              required
               />
             </label>
           </div>
@@ -97,6 +100,7 @@ class RegisterPage extends Component {
                 name="last_name"
                 value={this.state.last_name}
                 onChange={this.handleInputChangeFor('last_name')}
+                required
                 />
             </label>
           </div>
@@ -107,6 +111,7 @@ class RegisterPage extends Component {
                 name="birthday"
                 value={this.state.birthday}
                 onChange={this.handleInputChangeFor('birthday')}
+                required
                 />
             </label>
           </div>
@@ -117,6 +122,7 @@ class RegisterPage extends Component {
                 name="gender"
                 value={this.state.gender}
                 onChange={this.handleInputChangeFor('gender')}
+                required
                 />
             </label>
           </div>

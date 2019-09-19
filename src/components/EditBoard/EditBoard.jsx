@@ -31,7 +31,7 @@ class EditBoard extends Component {
                 <form>
                     <input 
                         value={this.props.board.board_name} 
-                        type="text" 
+                        type="text"
                         onChange={(event) => {
                             this.props.dispatch({
                                 type: 'EDIT_BOARD_NAME',

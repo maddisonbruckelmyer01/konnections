@@ -36,7 +36,7 @@ class CreateNewBoard extends Component {
         return (
             <div>
                 <form>
-                <input id="name" placeholder="Name of board" onChange={this.handleNameChange}/>
+                <input id="name" placeholder="Name of board" onChange={this.handleNameChange} />
                 <input id="description" placeholder="Description of board" onChange={this.handleDescriptionChange} />
                 <input type="button" value="Create Board" onClick={this.handleClick} />
                 </form>
