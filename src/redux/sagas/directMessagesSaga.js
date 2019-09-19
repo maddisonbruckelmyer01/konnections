@@ -4,7 +4,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 function* fetchDirectMessages() {
     try {
         let response = yield axios.get('/api/directMessage');
-        console.log(response.data)
+        console.log('direct messages are', response.data)
         yield put ({
             type: 'SET_DIRECT_MESSAGES',
             payload: response.data

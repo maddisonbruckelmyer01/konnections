@@ -72,7 +72,7 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path='/directMessage/:receiver'
+              path='/directMessage/:receiver_username'
               component={SpecificDirectMessage}
             />
 

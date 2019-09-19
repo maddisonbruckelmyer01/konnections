@@ -4,8 +4,8 @@ const router = express.Router();
 
 //get direct messages
 router.get('/', (req, res) => {
-    let queryText = `SELECT "receiver" FROM "conversations" 
-        WHERE "sender" = $1 GROUP BY "receiver";`;
+    let queryText = `SELECT "receiver_username" FROM "direct_messages" 
+        WHERE "sender_username" = $1 GROUP BY "receiver_username";`;
     sender = req.user.generated_username
     console.log('user is: ',req.user.generated_username)
     pool.query(queryText, [sender])
@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
             res.sendStatus(500);
         })
 })
-router.get('/:receiver', (req,res) => {
-    let receiver = req.params.receiver
+router.get('/:receiver_username', (req,res) => {
+    let receiver = req.params.receiver_username
     console.log('receiver:', receiver)
     let queryText = `SELECT * FROM "direct_messages" WHERE ("receiver_username" = $1 OR "sender_username" = $1);`
     pool.query(queryText, [receiver])
