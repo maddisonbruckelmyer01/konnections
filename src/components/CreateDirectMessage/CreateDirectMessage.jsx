@@ -1,5 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withStyles} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+const styles = theme => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap'
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit
+    }
+})
 
 
 class CreateDirectMessage extends Component {
@@ -43,6 +57,7 @@ class CreateDirectMessage extends Component {
     }//end handleClick
 
     render() {
+        const {classes} = this.props;
         return (
             <div>
             <h3>Usernames to pick from:</h3>
@@ -50,12 +65,30 @@ class CreateDirectMessage extends Component {
                 this.props.users.map((user) => {
                     return <li>{user.generated_username}</li>
                 })
-            }
-                <form>
-                    <input placeholder="Username" type="text" onChange={this.handleUsername}/>
-                    <input placeholder="New Message" type="text" onChange={this.handleMessage}/>
-                    <input type="button" value="Send" onClick={this.handleClick}/>
-                </form>     
+            }  
+                <div className={classes.container}>
+                    <TextField
+                        id="filled-mutiline-flexible"
+                        label="Username"
+                        multiline
+                        rowsMax="4"
+                        onChange={this.handleUsername}
+                        className={classes.textField}
+                        margin="normal"
+                        variant="filled"
+                    />
+                    <TextField
+                        id="filled-mutiline-flexible"
+                        label="New Message"
+                        multiline
+                        rowsMax="4"
+                        onChange={this.handleMessage}
+                        className={classes.textField}
+                        margin="normal"
+                        variant="filled"
+                    />
+                    <Button onClick={this.handleClick}>Send</Button>
+                </div>   
             </div>
         )
     }
@@ -67,4 +100,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(CreateDirectMessage);
+export default connect(mapStateToProps)(withStyles(styles)(CreateDirectMessage));

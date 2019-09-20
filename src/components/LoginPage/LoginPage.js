@@ -1,11 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { IconButton, TextField } from '@material-ui/core';
+import classNames from 'classnames';
+import {withStyles} from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
+
+const styles = theme => ({
+  margin: {
+    margin: theme.spacing.unit
+  },
+  textField: {
+    flexBasis: 200
+  },
+  textField2: {
+    marginLeft: theme.spacing.unit,
+    marginReight: theme.spacing.unit,
+    width: 200
+  }
+
+})
+
 
 class LoginPage extends Component {
   state = {
     username: '',
     password: '',
+    showPassword: false,
   };
+
+  handleClickShowPassword = () => {
+    this.setState(state => ({showPassword: !state.showPassword}))
+  }
 
   login = (event) => {
     event.preventDefault();
@@ -30,6 +61,7 @@ class LoginPage extends Component {
   }
 
   render() {
+    const {classes} = this.props;
     return (
       <div>
         {this.props.errors.loginMessage && (
@@ -43,26 +75,36 @@ class LoginPage extends Component {
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
+            <TextField
+              id="standard-with-placeholder"
+              label="Username"
+              placeholder="Username"
+              className={classes.textField2}
+              margin="normal"
+              onChange={this.handleInputChangeFor('username')}
+              value={this.state.username}
+            />
           </div>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
+            <FormControl className={classNames(classes.margin, classes.textField)}>
+              <InputLabel htmlFor="adornment-password">Password</InputLabel>
+              <Input
+                id="adornment-password"
+                type={this.state.showPassword ? 'text' : 'password'}
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="Toggle password visibility"
+                      onClick={this.handleClickShowPassword}
+                    >
+                      {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
-            </label>
+            </FormControl>
           </div>
           <div>
             <input
@@ -94,4 +136,4 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps)(withStyles(styles)(LoginPage));

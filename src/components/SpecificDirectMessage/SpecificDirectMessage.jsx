@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {withStyles} from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input'
+import Input from '@material-ui/core/Input';
 
 const styles = theme => ({
     button: {

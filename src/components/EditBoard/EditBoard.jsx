@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withStyles} from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
     container: {
         display: 'flex',
         flexWrap: 'wrap'
     },
-    input: {
-        margin: theme.spacing.unit
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit
     }
 })
 
@@ -42,34 +43,36 @@ class EditBoard extends Component {
         return (
             <div className={classes.container}>
                 <form>
-                <Input 
-                    value={this.props.board.board_name}
-                    type="text"
-                    className={classes.input}
+                <TextField 
+                    id="filled-multiline-flexible"
+                    label={this.props.board.board_name}
+                    multiline
+                    rowsMax="4"
                     onChange={(event) => {
-                            this.props.dispatch({
-                                type: 'EDIT_BOARD_NAME',
-                                payload: event.target.value
-                            })
-                        }} 
-                    inputProps={{
-                        'aria-label': 'Description'
+                        this.props.dispatch({
+                            type: 'EDIT_BOARD_NAME',
+                            payload: event.target.value
+                        })
                     }}
+                    className={classes.textField}
+                    margin="normal"
+                    variant="filled"
                 />
 
-                <Input
-                    value={this.props.board.description}
-                    type="text"
+                <TextField 
+                    id="filled-multiline-flexible"
+                    label={this.props.board.description}
+                    multiline
+                    rowsMax="4"
                     onChange={(event) => {
                         this.props.dispatch({
                             type: 'EDIT_BOARD_DESCRIPTION',
                             payload: event.target.value
                         })
                     }}
-                    inputProps={{
-                        'aria-label' : 'Description'
-                    }}
-                    className={classes.input}
+                    className={classes.textField}
+                    margin="normal"
+                    variant="filled"
                 />
 
                 <Button onClick={this.handleSubmit}>Submit</Button>

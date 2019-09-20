@@ -1,6 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withStyles} from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
+const styles = theme => ({
+    container: {
+        display: 'center',
+        flexWrap: 'wrap',
+        align: 'inline-blick'
+    },
+    textField: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit
+    }
+})
 
 class AddNewCounselor extends Component {
 
@@ -32,20 +46,62 @@ class AddNewCounselor extends Component {
     }//end handleClick
 
     render() {
+        const {classes} = this.props;
         return (
-            <div>
-                <form>
-                    <label> Add Name: </label>
-                    <input placeholder="Name of Counselor" type="text" onChange={(event, property) => {this.handleChange(event, 'name')}}/><br></br>
-                    <label> Website Address:</label>
-                    <input placeholder="Website Address" type="text" onChange={(event, property)=> {this.handleChange(event, 'website')}}/><br></br>
-                    <label>Phone Number: </label>
-                    {/* <p>If they do not have a phone number put "No Phone Number"</p> */}
-                    <input placeholder="Phone Number" type="text" onChange={(event,property) => {this.handleChange(event, 'phone_number')}}/><br></br>
-                    <label>Description of what they help with: </label>
-                    <textarea rows="4" placeholder="Description" onChange={(event,property) => {this.handleChange(event, 'description')} }></textarea><br></br>
-                    <input type="button" value="Submit" onClick={this.handleClick}/>
-                </form>
+            <div className={classes.container}>
+                    <TextField
+                        id="filled-mutiline-flexible"
+                        label="Name of Counselor"
+                        multiline
+                        rowsMax="4"
+                        onChange={(event, property) => {
+                            this.handleChange(event, 'name')
+                        }}
+                        className={classes.textField}
+                        margin="normal"
+                        variant="filled"
+                    />
+
+                    <TextField 
+                        id="filled-mutiline-flexible"
+                        label="Website Address"
+                        multiline
+                        rowsMax="4"
+                        onChange={(event, property) => {
+                            this.handleChange(event, 'website')
+                        }}
+                        className={classes.textField}
+                        margin="normal"
+                        variant="filled"
+                    />
+                  <p>If they have no phone number put "No Phone Number" in the text box!</p>
+                    <TextField 
+                        id="filled-mutiline-flexible"
+                        label="Phone Number"
+                        multiline
+                        rowsMax="4"
+                        onChange={(event, property) => {
+                            this.handleChange(event, 'phone_number')
+                        }}
+                        className={classes.textField}
+                        margin="normal"
+                        variant="filled"
+                    />
+                    
+                    <TextField 
+                        id="filled-mutiline-flexible"
+                        label="Description of what they help with"
+                        multiline
+                        rowsMax="4"
+                        onChange={(event, property) => {
+                            this.handleChange(event, 'description')
+                        }}
+                        className={classes.textField}
+                        margin="normal"
+                        variant="filled"
+                    /> 
+                   
+                    <Button onClick={this.handleClick}>Submit</Button>
             </div>
         )
     }
@@ -57,4 +113,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(AddNewCounselor);
+export default connect(mapStateToProps)(withStyles(styles)(AddNewCounselor));
