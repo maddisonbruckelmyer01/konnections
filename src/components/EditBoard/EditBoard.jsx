@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {withStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import UserPage from '../UserPage/UserPage';
 
 const styles = theme => ({
     container: {
@@ -42,6 +43,7 @@ class EditBoard extends Component {
        const { classes } = this.props;
         return (
             <div className={classes.container}>
+            <UserPage />
                 <form>
                 <TextField 
                     id="filled-multiline-flexible"

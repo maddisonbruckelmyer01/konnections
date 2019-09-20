@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import './Boards.css';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import UserPage from '../UserPage/UserPage';
 
 const styles = theme => ({
     root: {
@@ -95,6 +96,7 @@ class Boards extends Component {
         const { classes } = this.props;
         return (
             <div>
+            <UserPage />
             <Grid 
                 container
                 direction="column"

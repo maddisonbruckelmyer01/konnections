@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button';
 import {withStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
+import UserPage from '../UserPage/UserPage';
 
 const styles = theme => ({
     button: {
@@ -65,6 +66,7 @@ class SpecificDirectMessage extends Component {
         const {classes} = this.props;
         return (
             <div>
+            <UserPage />
             {
                 this.props.specificMessages.map((text) => {
                     return <p key={text.id}>{text.sender_username}: {text.message}</p>

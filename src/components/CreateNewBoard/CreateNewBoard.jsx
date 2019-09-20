@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {withStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import UserPage from '../UserPage/UserPage';
 
 const styles = theme => ({
     container: {
@@ -49,6 +50,7 @@ class CreateNewBoard extends Component {
         const {classes} = this.props;
         return (
             <div className={classes.container}>
+            <UserPage />
                 <form>
                 <Input
                     placeholder="Name of board"

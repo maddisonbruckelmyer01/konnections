@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import UserPage from '../UserPage/UserPage';
 
 const styles = theme => ({
     root: {
@@ -54,6 +55,7 @@ class DirectMessage extends Component {
         const { classes } = this.props;   
         return (
             <div>  
+            <UserPage />
             <Paper className={classes.root}>
                 <Table className={classes.root}>
                     <TableHead>
