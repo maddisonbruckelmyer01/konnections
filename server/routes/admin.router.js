@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
+
 //get all users from the database for the admin
 router.get('/users', rejectUnauthenticated, (req, res) => {
     let queryText = `SELECT * FROM "user";`;

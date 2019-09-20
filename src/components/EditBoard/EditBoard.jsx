@@ -1,5 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withStyles} from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap'
+    },
+    input: {
+        margin: theme.spacing.unit
+    }
+})
 
 class EditBoard extends Component {
  
@@ -25,40 +38,43 @@ class EditBoard extends Component {
     }//end handleCancel
 
     render() {
-       
+       const { classes } = this.props;
         return (
-            <div>
+            <div className={classes.container}>
                 <form>
-                    <input 
-                        value={this.props.board.board_name} 
-                        type="text"
-                        onChange={(event) => {
+                <Input 
+                    value={this.props.board.board_name}
+                    type="text"
+                    className={classes.input}
+                    onChange={(event) => {
                             this.props.dispatch({
                                 type: 'EDIT_BOARD_NAME',
                                 payload: event.target.value
                             })
                         }} 
-                    />
-                    <input 
-                        value={this.props.board.description} 
-                        type="text"
-                        onChange={(event) => {
-                            this.props.dispatch({
-                                type: 'EDIT_BOARD_DESCRIPTION',
-                                payload: event.target.value
-                            })
-                        }} 
-                    />
-                    <input 
-                        type="button" 
-                        value="Submit" 
-                        onClick={this.handleSubmit}
-                    />
-                    <input 
-                        type="button" 
-                        value="Cancel" 
-                        onClick={this.handleCancel}
-                    />
+                    inputProps={{
+                        'aria-label': 'Description'
+                    }}
+                />
+
+                <Input
+                    value={this.props.board.description}
+                    type="text"
+                    onChange={(event) => {
+                        this.props.dispatch({
+                            type: 'EDIT_BOARD_DESCRIPTION',
+                            payload: event.target.value
+                        })
+                    }}
+                    inputProps={{
+                        'aria-label' : 'Description'
+                    }}
+                    className={classes.input}
+                />
+
+                <Button onClick={this.handleSubmit}>Submit</Button>
+                
+                <Button onClick={this.handleCancel}>Cancel</Button>
                 </form>
               
             </div>
@@ -72,4 +88,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(EditBoard);
+export default connect(mapStateToProps)(withStyles(styles)(EditBoard));

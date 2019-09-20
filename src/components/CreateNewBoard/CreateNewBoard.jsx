@@ -1,5 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withStyles} from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap'
+    },
+    input: {
+        margin: theme.spacing.unit
+    }
+})
 
 class CreateNewBoard extends Component {
     state = {
@@ -33,16 +46,35 @@ class CreateNewBoard extends Component {
     }//end handleClick
 
     render() {
+        const {classes} = this.props;
         return (
-            <div>
+            <div className={classes.container}>
                 <form>
-                <input id="name" placeholder="Name of board" onChange={this.handleNameChange} />
-                <input id="description" placeholder="Description of board" onChange={this.handleDescriptionChange} />
-                <input type="button" value="Create Board" onClick={this.handleClick} />
+                <Input
+                    placeholder="Name of board"
+                    id="name"
+                    className={classes.input}
+                    onChange={this.handleNameChange}
+                    inputProps={{
+                        'aria-label': 'Description'
+                    }}
+                />
+                <Input
+                    placeholder="Description of board"
+                    id="description"
+                    className={classes.input}
+                    onChange={this.handleDescriptionChange}
+                    inputProps={{
+                        'aria-label': 'Description'
+                    }}
+                />
+                <Button onClick={this.handleClick}>
+                Create Board
+                </Button>
                 </form>
             </div>
         )
     }
 }
 
-export default connect()(CreateNewBoard);
+export default connect()(withStyles(styles)(CreateNewBoard));
