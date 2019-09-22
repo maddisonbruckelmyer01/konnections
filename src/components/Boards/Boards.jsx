@@ -80,12 +80,6 @@ class Boards extends Component {
         this.props.history.push('/createNewBoard');
     }//end handleNewBoardClick
 
-    //create a new direct message click
-    handleNewDirectClick = () => {
-        console.log('new direct message clicked')
-        this.props.history.push('/directMessage')
-    }//end handleNewDirectClick
-
     //click on board name and see specific board with those messages
     boardClicker = (id) => {
         console.log('board clicked')
@@ -134,13 +128,6 @@ class Boards extends Component {
                 <Button 
                     variant="contained"
                     className={classes.button}
-                    onClick={this.handleNewDirectClick}
-                >
-                    Direct Messages
-                </Button>
-                <Button 
-                    variant="contained"
-                    className={classes.button}
                     onClick={this.handleNewBoardClick}
                 >
                     Create a new board
@@ -149,7 +136,6 @@ class Boards extends Component {
         )
     }
 }
-
 
 const mapStateToProps = (state) => {
     return {

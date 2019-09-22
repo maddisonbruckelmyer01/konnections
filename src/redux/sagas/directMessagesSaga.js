@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
+import Swal from 'sweetalert2';
 
 function* fetchDirectMessages() {
     try {
@@ -19,8 +20,17 @@ function* sendDirectMessages(action) {
     try {
         yield axios.post('/api/directMessage/sendDirectMessage', action.payload);
         console.log(action.payload)
+        Swal.fire({
+            type: 'success',
+            text: 'Your message has been sent!'
+        })
     }
     catch (error) {
+        Swal.fire({
+            type: 'error',
+            title: 'Opps...',
+            text: 'That username does not exist!'
+        })
         console.log('direct messages post request error', error)
     }
 }

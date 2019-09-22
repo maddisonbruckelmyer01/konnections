@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {put, takeLatest} from 'redux-saga/effects';
+import Swal from 'sweetalert2';
 
 function* fetchBoards() {
     try{
@@ -31,6 +32,10 @@ function* addBoard(action) {
     try{
         yield axios.post('/api/boards/addNew', action.payload)
         console.log(action.payload)
+        Swal.fire({
+            type: 'success',
+            text: 'Your board has been created!'
+        })
         yield put({
             type: 'FETCH_BOARDS'
         })
@@ -39,6 +44,10 @@ function* addBoard(action) {
         })
     }
     catch(error) {
+        Swal.fire({
+            type: 'error',
+            text: 'Your board could not be created at this time, try again later!'
+        })
         console.log('Adding board post error', error)
         action('Board has not been created!')
     }

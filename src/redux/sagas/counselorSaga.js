@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {put, takeLatest} from 'redux-saga/effects';
+import Swal from 'sweetalert2';
 
 function* fetchCounselors() {
     try{
@@ -30,11 +31,19 @@ function*  addNewCounselor(action) {
 function* deleteCounselor(action) {
     try{
         yield axios.delete(`/api/counselors/deleteCounselor/${action.payload}`, action.payload)
+        Swal.fire({
+            type: 'success',
+            text: 'The counselor has been deleted!'
+        })
         yield put({
             type: 'FETCH_COUNSELORS'
         })
     }
     catch(error) {
+        Swal.fire({
+            type: 'error',
+            text: 'Could not delete the counselor at this time. Try again later!'
+        })
         console.log('Deleting counselor error', error)
     }
 }
