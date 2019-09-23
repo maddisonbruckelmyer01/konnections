@@ -14,8 +14,6 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import Counselors from '../Counselors/Counselors';
 import Boards from '../Boards/Boards';
 
@@ -29,21 +27,6 @@ import AddNewCounselor from '../AddNewCounselor/AddNewCounselor';
 import EditBoard from '../EditBoard/EditBoard';
 import SpecificDirectMessage from '../SpecificDirectMessage/SpecificDirectMessage';
 
-import {withStyles} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary
-  }
-})
-
 
 class App extends Component {
   componentDidMount () {
@@ -51,7 +34,6 @@ class App extends Component {
   }
 
   render() {
-   const {classes} = this.props;
     return (
       <Router>
         <div>
@@ -104,12 +86,6 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path="/home"
-              component={UserPage}
-            />
-
-            <ProtectedRoute
-              exact
               path="/board/:id"
               component={Messages}
             />
@@ -135,12 +111,6 @@ class App extends Component {
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
-            />
-
-            <ProtectedRoute
-              exact
               path="/createNewDirectMessage"
               component={CreateDirectMessage}
             />
@@ -154,4 +124,4 @@ class App extends Component {
   )}
 }
 
-export default connect()(withStyles(styles)(App));
+export default connect()(App);

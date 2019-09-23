@@ -7,6 +7,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 //get all users from the database for the admin
 router.get('/users', rejectUnauthenticated, (req, res) => {
     console.log(req.user);
+   
     let queryText = `SELECT * FROM "user";`;
     pool.query(queryText) 
         .then((result) => {

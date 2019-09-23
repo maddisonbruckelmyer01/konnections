@@ -44,7 +44,6 @@ class Counselors extends Component {
         return (
             <div>
             <UserPage />
-            <h1>Counselors:</h1>
             <Paper className={classes.root}>
                 <Table className={classes.table}>
                     <TableHead>

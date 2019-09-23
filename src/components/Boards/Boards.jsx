@@ -7,7 +7,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import './Boards.css';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import UserPage from '../UserPage/UserPage';
@@ -97,7 +96,6 @@ class Boards extends Component {
                 justify="center"
                 alignItems="center"
             ></Grid>
-            <h1 className="board">Boards:</h1>
             <Paper className={classes.root}>
                 <Table className={classes.root}>
                     <TableHead>

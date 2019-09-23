@@ -10,9 +10,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import red from '@material-ui/core/colors/red';
-
-const red2 = red[500];
 
 const styles = theme => ({
     root: {

@@ -52,7 +52,6 @@ router.post('/addNew', rejectUnauthenticated, (req,res) => {
 
 //delete a board
 router.delete('/:id', rejectUnauthenticated, (req,res) => {
-    if (req.user.admin === 'true') {
     let queryText = `DELETE FROM "board" WHERE "id" = $1;`
     let secondqueryText = `DELETE FROM "messages" WHERE "board_id" = $1;`;
     let id = req.params.id
@@ -71,7 +70,6 @@ router.delete('/:id', rejectUnauthenticated, (req,res) => {
             console.log(error)
             res.sendStatus(500)
         })
-    }
 })
 
 

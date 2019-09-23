@@ -59,9 +59,17 @@ function* deleteBoard(action) {
         yield put({
             type: 'FETCH_BOARDS'
         })
+        Swal.fire({
+            type: 'success',
+            text: 'The board has been deleted!'
+        })
     }
     catch(error) {
         console.log('error on deleteing board', error)
+        Swal.fire({
+            type: 'error',
+            text: 'The board could not be deleted at this time'
+        })
     }
 }
 

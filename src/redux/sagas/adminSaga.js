@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
+import Swal from 'sweetalert2';
 
 //get all users
 function *fetchUsers(action){
@@ -19,9 +20,17 @@ function *fetchUsers(action){
 function* editBoard(action) {
     try {
         yield axios.put(`/api/admin/editBoard`, action.payload)
+        Swal.fire({
+            type: 'success',
+            text: 'The board has been updated!'
+        })
     }
     catch (error) {
         console.log('error on editing board', error)
+        Swal.fire({
+            type: 'error',
+            text: 'Your board could not be updated at this time!'
+        })
     }
 }
 
