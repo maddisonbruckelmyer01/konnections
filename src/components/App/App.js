@@ -29,6 +29,20 @@ import AddNewCounselor from '../AddNewCounselor/AddNewCounselor';
 import EditBoard from '../EditBoard/EditBoard';
 import SpecificDirectMessage from '../SpecificDirectMessage/SpecificDirectMessage';
 
+import {withStyles} from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary
+  }
+})
 
 
 class App extends Component {
@@ -37,18 +51,18 @@ class App extends Component {
   }
 
   render() {
-   
+   const {classes} = this.props;
     return (
       <Router>
         <div>
-          
-            
         <Nav />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
+            <div className="pages">
+            
             <Route
               exact
               path="/about"
@@ -130,6 +144,7 @@ class App extends Component {
               path="/createNewDirectMessage"
               component={CreateDirectMessage}
             />
+            </div>
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
@@ -139,4 +154,4 @@ class App extends Component {
   )}
 }
 
-export default connect()(App);
+export default connect()(withStyles(styles)(App));
