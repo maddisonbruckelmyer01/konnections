@@ -29,6 +29,7 @@
 
 .nav-link:hover {
   background-color: 	#FF1493;
+  color: white;
 }
 
 .nav-right {
