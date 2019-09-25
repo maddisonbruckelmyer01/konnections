@@ -27,6 +27,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
+    "supertest": "^4.0.2",
     "sweetalert2": "^8.17.6"
   },
   "scripts": {
@@ -35,7 +36,8 @@
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "testServer": "jest server/tests/*.test.js --forceExit"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
