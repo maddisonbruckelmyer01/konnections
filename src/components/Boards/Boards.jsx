@@ -11,40 +11,21 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     root: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-        overflowX: 'auto',
-    },
-    table: {
-        minWidth: 650,
+       margin: '0px 100px 0px 100px'
     },
    button: {
        margin: theme.spacing.unit
    },
-   input: {
-       display: 'none'
-   },
-   gridRoot: {
-       flexGrow: 1
-   },
-   paper: {
-       padding: theme.spacing.unit *2,
-       textAlign: 'center',
-       color: theme.palette.text.secondary
-   },
     card: {
-        minWidth: 275,
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
+        maxWidth: '250px',
+        maxLength: '100px',
+        marginLeft: '24px'
     },
     title: {
         fontSize: 14,
     },
     pos: {
-        marginBottom: 12,
+        marginBottom: '12px',
     }
 });
 
@@ -99,10 +80,12 @@ class Boards extends Component {
 
     render() {
         const { classes } = this.props;
-        const bull = <span className={classes.bullet}>•</span>;
         return (
-            <div>
-                <UserPage />
+            <div className={classes.root}>
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <UserPage />
+                </Grid>
             {this.props.boards.map((board) => {
                 return(<> 
                     <Card className={classes.card}>
@@ -118,9 +101,13 @@ class Boards extends Component {
                             <Button size="small" onClick={() => { this.boardClicker(board.id) }}>Go to board</Button>
                         </CardActions>
                     </Card>
+                    <br></br>
                     </>)
             })}
-            <Button onClick={this.handleNewBoardClick}>Create new board</Button>
+            <Grid item xs={12}>
+                <Button onClick={this.handleNewBoardClick}>Create new board</Button>
+            </Grid>
+                </Grid>
             </div>
         )
     }
