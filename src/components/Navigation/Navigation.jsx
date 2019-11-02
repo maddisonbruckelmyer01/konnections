@@ -1,6 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import React, {Component} from 'react';
+import {withStyles} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,15 +12,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import {Link} from 'react-router-dom';
 
 const drawerWidth = 240;
- 
+
 const styles = theme => ({
     root: {
         display: 'flex',
-        overflow: 'hidden',
-        marginRight: 1000
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -37,67 +33,18 @@ const styles = theme => ({
         flexGrow: 1,
         padding: theme.spacing.unit * 3,
     },
-    navLink: {
-        float: 'left',
-        color: '#f2f2f2',
-        backgroundColor: '#00acb0',
-        textAlign: 'center',
-        padding: '24px 10px',
-        textDecoration: 'none',
-        fontSize: '15px',
-        border: 'none',
-        cursor: 'pointer',
-        outline: '0'
-    },
     toolbar: theme.mixins.toolbar,
 });
 
-function ClippedDrawer(props) {
-    const { classes } = props;
-
-    return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <AppBar position="fixed" className={classes.appBar}>
-                <Toolbar>
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Konnections
-          </Typography>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                className={classes.drawer}
-                variant="permanent"
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div className={classes.toolbar} />
-                <List>
-                    {['Home', 'Info', 'Boards', 'Counselors', 'Admin', 'About'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <Link to="/boards">Boards</Link>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
-                </List>
-                <List className={classes.navLink}>
-                    <ListItem button>
-                        <ListItemText><Link to="/boards">Boards</Link></ListItemText>
-                    </ListItem>
-                </List>
-                <List className={classes.navLink}>
-                    <ListItem button>
-                        <ListItemText><Link to="/counselors">Counselors</Link></ListItemText>
-                    </ListItem>
-                </List>
-            </Drawer>
-        </div>
-    );
+class Navigation extends Component {
+    render() {
+        const { classes } = this.props; 
+        return (
+            <div>
+                
+            </div>
+        )
+    }
 }
 
-ClippedDrawer.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ClippedDrawer);
+export default withStyles(styles)(Navigation);
