@@ -9,12 +9,27 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import UserPage from '../UserPage/UserPage';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     root: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-        overflowX: 'auto',
+        margin: '0px 100px 0px 100px'
+    },
+    card: {
+        maxWidth: '250px',
+        maxLength: '150px',
+        marginLeft: '24px',
+        marginBottom: '24px',
+    },
+    title: {
+        fontSize: 14
+    },
+    pos: {
+        marginBottom: '12px'
     },
     table: {
         minWidth: 650,
@@ -42,39 +57,37 @@ class Counselors extends Component {
     render() {
         const {classes} = this.props;
         return (
-            <div>
-            <UserPage />
-            <Paper className={classes.root}>
-                <Table className={classes.table}>
-                    <TableHead>
-                        <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Website</TableCell>
-                        <TableCell>Phone Number</TableCell>
-                        <TableCell>Description</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {this.props.counselorReducer.map((counselor) => {
-                        return(<TableRow key={counselor.id}>
-                            <TableCell>{counselor.name}</TableCell>
-                            <TableCell>
-                                <Button 
-                                    href={counselor.website}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={classes.button}
-                                >
-                                    Open Website
-                                </Button>
-                            </TableCell>
-                            <TableCell>{counselor.phone_number}</TableCell>
-                            <TableCell>{counselor.description}</TableCell>
-                            </TableRow>)
-                    })}
-                    </TableBody>
-                </Table>
-            </Paper>
+            <div className={classes.root}>
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <UserPage />
+                </Grid>
+                {this.props.counselorReducer.map((couselor) => {
+                    return (
+                        <>
+                        <Card className={classes.card}>
+                        <Typography variant="h6" component="h3">
+                            {couselor.name}
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            {couselor.description}
+                        </Typography>
+                        <Typography>
+                            Phone Number: {couselor.phone_number}
+                        </Typography>
+                        <Button
+                            href={couselor.website}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={classes.button}
+                        >
+                            Go To Website
+                        </Button>
+                        </Card>
+                        </>
+                    )
+                })}
+            </Grid>
             </div>
         )
     }

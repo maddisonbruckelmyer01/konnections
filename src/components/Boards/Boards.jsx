@@ -19,7 +19,8 @@ const styles = theme => ({
     card: {
         maxWidth: '250px',
         maxLength: '100px',
-        marginLeft: '24px'
+        marginLeft: '24px',
+        marginBottom: '24px'
     },
     title: {
         fontSize: 14,
@@ -98,7 +99,7 @@ class Boards extends Component {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small" onClick={() => { this.boardClicker(board.id) }}>Go to board</Button>
+                            <Button size="small" onClick={() => {this.boardClicker(board.id)}}>Go to board</Button>
                         </CardActions>
                     </Card>
                     <br></br>
