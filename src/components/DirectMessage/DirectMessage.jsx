@@ -9,12 +9,30 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import UserPage from '../UserPage/UserPage';
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+
 
 const styles = theme => ({
     root: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-        overflowX: 'auto',
+       margin: '0px 100px 0px 100px'
+    },
+    card: {
+        maxWidth: '260px',
+        maxLength: '150px',
+        marginLeft: '24px',
+        marginBottom: '24px'
+    },
+    content: {
+        marginLeft: '5px'
+    },
+    title: {
+        fontSize: 14
+    },
+    pos: {
+        marginBottom: '12px'
     },
     table: {
         minWidth: 650,
@@ -54,27 +72,24 @@ class DirectMessage extends Component {
     render() {
         const { classes } = this.props;   
         return (
-            <div>  
-            <UserPage />
-            <Paper className={classes.root}>
-                <Table className={classes.root}>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Direct Message</TableCell>
-                            <TableCell>Open Messages</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {this.props.messages.map((text) => {
-                        return(<TableRow key={text.id}>
-                            <TableCell>{text.receiver_username}</TableCell>
-                            <TableCell><Button className={classes.button} onClick={() => {this.messagesClick(text.receiver_username)}}>Go To Messages</Button></TableCell>
-                            </TableRow>)
-                    })}
-                    </TableBody>
-                </Table>
-            </Paper>
-                <Button variant="contained" className={classes.button} color="primary" onClick={this.handleClick}>Create New Direct Message</Button>
+            <div className={classes.root}>
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <UserPage />
+                </Grid>
+                {this.props.messages.map((text) => {
+                    return (<>
+                        <Card className={classes.card}>
+                            <CardContent className={classes.conent}>
+                                <Typography variant="h6" component="h3">
+                                {text.receiver_username}
+                                </Typography>
+                                <Button className={classes.button} onClick={() => {this.messagesClick(text.receiver_username)}}>Go To Messages</Button>
+                            </CardContent>
+                        </Card>
+                        </>)
+                })}
+            </Grid>
             </div>
         )
     }

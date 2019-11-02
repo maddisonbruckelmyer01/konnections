@@ -99,14 +99,14 @@ class Boards extends Component {
                             </Typography>
                         </CardContent>
                         <CardActions>
-                            <Button size="small" onClick={() => {this.boardClicker(board.id)}}>Go to board</Button>
+                            <Button size="small" onClick={() => {this.boardClicker(board.id)}} color="secondary">Go to board</Button>
                         </CardActions>
                     </Card>
                     <br></br>
                     </>)
             })}
             <Grid item xs={12}>
-                <Button onClick={this.handleNewBoardClick}>Create new board</Button>
+                <Button onClick={this.handleNewBoardClick} color="secondary">Create new board</Button>
             </Grid>
                 </Grid>
             </div>
