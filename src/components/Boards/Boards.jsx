@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import UserPage from '../UserPage/UserPage';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     root: {
@@ -33,7 +31,21 @@ const styles = theme => ({
        padding: theme.spacing.unit *2,
        textAlign: 'center',
        color: theme.palette.text.secondary
-   }
+   },
+    card: {
+        minWidth: 275,
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    }
 });
 
 class Boards extends Component {
@@ -87,49 +99,28 @@ class Boards extends Component {
 
     render() {
         const { classes } = this.props;
+        const bull = <span className={classes.bullet}>•</span>;
         return (
             <div>
-            <UserPage />
-            <Grid 
-                container
-                direction="column"
-                justify="center"
-                alignItems="center"
-            ></Grid>
-            <Paper className={classes.root}>
-                <Table className={classes.root}>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Description</TableCell>
-                            <TableCell>Go To Board</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {this.props.boards.map((board)=>{
-                        return (<TableRow key={board.id}>
-                            <TableCell>{board.board_name}</TableCell>
-                            <TableCell>{board.description}</TableCell>
-                            <TableCell>
-                                <Button 
-                                    className={classes.button}
-                                    onClick={() => {this.boardClicker(board.id)}}
-                                >
-                                    Go To Board
-                                </Button>
-                            </TableCell>
-                            </TableRow>)
-                    })}
-                    </TableBody>
-                </Table>
-            </Paper>
-                <Button 
-                    variant="contained"
-                    className={classes.button}
-                    onClick={this.handleNewBoardClick}
-                >
-                    Create a new board
-                </Button>
+                <UserPage />
+            {this.props.boards.map((board) => {
+                return(<> 
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography variant="h5" component="h2">
+                                {board.board_name}
+                            </Typography>
+                            <Typography className={classes.pos} color="textSecondary">
+                            {board.description}
+                            </Typography>
+                        </CardContent>
+                        <CardActions>
+                            <Button size="small" onClick={() => { this.boardClicker(board.id) }}>Go to board</Button>
+                        </CardActions>
+                    </Card>
+                    </>)
+            })}
+            <Button onClick={this.handleNewBoardClick}>Create new board</Button>
             </div>
         )
     }
