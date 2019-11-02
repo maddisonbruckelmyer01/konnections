@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import UserPage from '../UserPage/UserPage';
 import Grid from '@material-ui/core/Grid';
@@ -20,10 +14,13 @@ const styles = theme => ({
         margin: '0px 100px 0px 100px'
     },
     card: {
-        maxWidth: '250px',
+        maxWidth: '260px',
         maxLength: '150px',
         marginLeft: '24px',
         marginBottom: '24px',
+    },
+    content: {
+        marginLeft: '5px'
     },
     title: {
         fontSize: 14
@@ -66,6 +63,7 @@ class Counselors extends Component {
                     return (
                         <>
                         <Card className={classes.card}>
+                        <CardContent className={classes.content}>
                         <Typography variant="h6" component="h3">
                             {couselor.name}
                         </Typography>
@@ -80,9 +78,11 @@ class Counselors extends Component {
                             target="_blank"
                             rel="noreferrer"
                             className={classes.button}
+                            color="secondary"
                         >
                             Go To Website
                         </Button>
+                        </CardContent>
                         </Card>
                         </>
                     )
