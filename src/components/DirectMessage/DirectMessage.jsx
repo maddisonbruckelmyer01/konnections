@@ -84,11 +84,14 @@ class DirectMessage extends Component {
                                 <Typography variant="h6" component="h3">
                                 {text.receiver_username}
                                 </Typography>
-                                <Button className={classes.button} onClick={() => {this.messagesClick(text.receiver_username)}}>Go To Messages</Button>
+                                <Button className={classes.button} onClick={() => {this.messagesClick(text.receiver_username)}} color="secondary">Go To Messages</Button>
                             </CardContent>
                         </Card>
                         </>)
                 })}
+                <Grid item xs={12}>
+                    <Button color="secondary" onClick={this.handleClick}>Create New Message</Button>
+                </Grid>
             </Grid>
             </div>
         )
